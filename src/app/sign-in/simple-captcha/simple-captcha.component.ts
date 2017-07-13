@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-simple-captcha',
@@ -10,22 +9,18 @@ export class SimpleCaptchaComponent implements OnInit {
 
   randomNumder: number;
   boolCaptcha: boolean;
-  myForm: FormGroup;
-  constructor() {
-    this.myForm = new FormGroup({
 
-      "simpleCaptcha": new FormControl("", [
-        Validators.required,
-        // Validators.pattern()
-      ])
-    });
-  }
-
-  submit() {
+  @Input() captcha: string;
+  @Output() captchaChange = new EventEmitter<boolean>();
+  onCaptchaChange(model: string) {
     this.boolCaptcha = false;
-    if (this.myForm.value.simpleCaptcha == this.randomNumder) {
-     return this.boolCaptcha = true;
+    this.captcha = model;
+    if (+this.captcha == this.randomNumder){
+      this.captchaChange.emit(this.boolCaptcha = true);
+    }else {
+      this.captchaChange.emit(this.boolCaptcha);
     }
+    console.log(model);
   }
 
   private getRandom() {
@@ -35,5 +30,8 @@ export class SimpleCaptchaComponent implements OnInit {
   ngOnInit() {
     this.getRandom()
   }
+
+
+
 
 }

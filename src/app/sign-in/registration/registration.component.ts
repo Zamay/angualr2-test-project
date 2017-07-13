@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegistrationComponent {
 
+  number: string = "";
   myForm: FormGroup;
   constructor() {
     this.myForm = new FormGroup({
