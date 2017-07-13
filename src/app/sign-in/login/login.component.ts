@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent{
 
   myForm: FormGroup;
   constructor() {

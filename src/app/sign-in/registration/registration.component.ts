@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
 
-  number: string = "";
+  randNumber: number;
   myForm: FormGroup;
-  constructor() {
+
+  constructor(private simpleCaptchaService: SimpleCaptchaService ) {
+
     this.myForm = new FormGroup({
 
       "userName": new FormControl("User"),
@@ -22,6 +25,10 @@ export class RegistrationComponent {
         Validators.required
       ])
     });
+  }
+
+  ngOnInit() {
+    this.randNumber = this.simpleCaptchaService.getRandom();
   }
 
   submit() {

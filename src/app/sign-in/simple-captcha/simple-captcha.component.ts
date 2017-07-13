@@ -1,4 +1,4 @@
-import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-simple-captcha',
@@ -7,30 +7,19 @@ import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
 })
 export class SimpleCaptchaComponent implements OnInit {
 
-  randomNumder: number;
-  boolCaptcha: boolean;
+  captcha: string;
 
-  @Input() captcha: string;
-  @Output() captchaChange = new EventEmitter<boolean>();
+  @Input() randomNumber: string;
+  @Output() captchaChange = new EventEmitter<string>();
   onCaptchaChange(model: string) {
-    this.boolCaptcha = false;
-    this.captcha = model;
-    if (+this.captcha == this.randomNumder){
-      this.captchaChange.emit(this.boolCaptcha = true);
-    }else {
-      this.captchaChange.emit(this.boolCaptcha);
-    }
+    this.randomNumber = model;
+    this.captchaChange.emit(model);
     console.log(model);
   }
 
-  private getRandom() {
-    this.randomNumder = Math.floor(Math.random() * 1000000);
-  }
-
   ngOnInit() {
-    this.getRandom()
+   this.captcha =  this.randomNumber;
   }
-
 
 
 

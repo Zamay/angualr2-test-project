@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { LoginModule } from './sign-in/login/login.module';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistrationModule } from './sign-in/registration/registration.module';
+import { SimpleCaptchaService } from './shared/servise/simple-captcha.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { RegistrationModule } from './sign-in/registration/registration.module';
     RegistrationModule,
     RouterModule
   ],
-  providers: [],
+  providers: [SimpleCaptchaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
