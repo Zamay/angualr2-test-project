@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+
+
+<form  class="form-inline" [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+  <div class="form-group">
+    <label class="sr-only" for="captcha">Введите числа</label>
+    <div class="input-group">
+      <div class="input-group-addon"><s><i>{{randomNumder}}</i></s></div>
+      <input type="text" class="form-control" name="captcha" formControlName="simpleCaptcha" id="captcha" placeholder="Введите числа">
+      <div class="input-group-addon">
+        <button class="btn btn-default" [disabled]="myForm.invalid">
+          ok
+        </button>
+      </div>
+    </div>
+    <div class="alert alert-danger"
+         *ngIf="myForm.controls['simpleCaptcha'].invalid && myForm.controls['simpleCaptcha'].touched">
+      Некорректный ввод
+    </div>
+  </div>
+</form>
+<br>

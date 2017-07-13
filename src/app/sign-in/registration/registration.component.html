@@ -18,8 +18,11 @@
       <label>Пароль</label>
       <input class="form-control" name="password" formControlName="userPass" />
     </div>
-    <div class="form-group">
-      <button class="btn btn-default" [disabled]="myForm.invalid">
+
+    <app-simple-captcha #captcha></app-simple-captcha>
+
+    <div class="form-group" >
+      <button class="btn btn-default" [disabled]="myForm.invalid && !captcha.boolCaptcha " >
         Отправить
       </button>
       <a [routerLink]="['/login']" class="btn btn-link">Отмена</a>
