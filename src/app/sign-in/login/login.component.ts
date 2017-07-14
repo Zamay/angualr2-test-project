@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.service';
 
@@ -7,10 +7,12 @@ import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.servic
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit {
+  random: string;
+  reCaptcha: string;
 
   myForm: FormGroup;
-  constructor() {
+  constructor(private simpleCaptchaService: SimpleCaptchaService ) {
     this.myForm = new FormGroup({
 
       "userEmail": new FormControl("", [
@@ -21,6 +23,10 @@ export class LoginComponent{
         Validators.required
       ])
     });
+  }
+
+  ngOnInit() {
+    this.random = '' + this.simpleCaptchaService.getRandom();
   }
 
   submit() {
