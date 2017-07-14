@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.service';
 
@@ -7,9 +7,10 @@ import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.servic
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnChanges {
 
-  randNumber: number;
+  random: string;
+  reCaptcha: string;
   myForm: FormGroup;
 
   constructor(private simpleCaptchaService: SimpleCaptchaService ) {
@@ -28,10 +29,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.randNumber = this.simpleCaptchaService.getRandom();
+    this.random = '' + this.simpleCaptchaService.getRandom();
   }
 
-  submit() {
-    console.log(this.myForm.value);
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      let chng = changes[propName];
+      let cur  = JSON.stringify(chng.currentValue);
+      let prev = JSON.stringify(chng.previousValue);
+      console.log(`${propName}: currentValue1 = ${cur}, previousValue1 = ${prev}`);
+    }
   }
+
 }

@@ -1,7 +1,7 @@
 <div class="form-group">
   <div class="input-group">
     <label class="input-group-addon"><s><i>{{ captcha }}</i></s></label>
-    <input type="text" class="form-control" [ngModel]="number" (ngModelChange)="onCaptchaChange($event)" placeholder="Введите число" >
+    <input type="text" class="form-control" [ngModel]="reCaptcha" (ngModelChange)="onChange($event)" placeholder="Введите число" >
   </div>
 </div>
 
