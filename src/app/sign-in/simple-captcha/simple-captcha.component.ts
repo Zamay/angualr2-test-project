@@ -20,7 +20,6 @@ export class SimpleCaptchaComponent {
 
   @Input() captcha: string;
 
-  @Input() reCaptcha: string;
   @Output() onChanged = new EventEmitter<string>();
   change(model: string) {
     this.onChanged.emit(model);
