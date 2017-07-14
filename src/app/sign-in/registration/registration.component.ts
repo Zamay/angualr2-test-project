@@ -7,10 +7,10 @@ import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.servic
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit, OnChanges {
+export class RegistrationComponent implements OnInit {
 
   random: string;
-  reCaptcha: string;
+  reCap: boolean = false;
   myForm: FormGroup;
 
   constructor(private simpleCaptchaService: SimpleCaptchaService ) {
@@ -32,13 +32,15 @@ export class RegistrationComponent implements OnInit, OnChanges {
     this.random = '' + this.simpleCaptchaService.getRandom();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    for (let propName in changes) {
-      let chng = changes[propName];
-      let cur  = JSON.stringify(chng.currentValue);
-      let prev = JSON.stringify(chng.previousValue);
-      console.log(`${propName}: currentValue1 = ${cur}, previousValue1 = ${prev}`);
-    }
+  reCaptcha(e): boolean {
+    const inputNumber = e;
+    this.reCap = this.simpleCaptchaService.compareValue(this.random, inputNumber.target.value);
+    console.log(this.reCap);
+    return this.reCap
+  }
+
+  submit() {
+    console.log(this.myForm);
   }
 
 }

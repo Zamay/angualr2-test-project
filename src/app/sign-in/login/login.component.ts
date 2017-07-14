@@ -9,7 +9,7 @@ import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.servic
 })
 export class LoginComponent implements OnInit {
   random: string;
-  reCaptcha: string;
+  reCap: boolean = false;
 
   myForm: FormGroup;
   constructor(private simpleCaptchaService: SimpleCaptchaService ) {
@@ -27,6 +27,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.random = '' + this.simpleCaptchaService.getRandom();
+  }
+
+  reCaptcha(e): boolean {
+    const inputNumber = e;
+    this.reCap = this.simpleCaptchaService.compareValue(this.random, inputNumber.target.value);
+    console.log(this.reCap);
+    return this.reCap
   }
 
   submit() {

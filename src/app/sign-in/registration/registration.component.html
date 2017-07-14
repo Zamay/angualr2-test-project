@@ -19,12 +19,12 @@
       <input class="form-control" name="password" formControlName="userPass" />
     </div>
 
-    <app-simple-captcha [captcha]="random"  [(reCaptcha)]="reCaptcha"></app-simple-captcha>
-    <div>Проверка: {{reCaptcha}}</div>
+    <app-simple-captcha [captcha]="random"  (onChanged)="reCaptcha($event)"></app-simple-captcha>
 
     <div class="form-group" >
-      <button class="btn btn-default" [disabled]="myForm.invalid" >
+      <button class="btn btn-default" [disabled]="myForm.invalid || !reCap" >
         Отправить
+        {{reCap}}
       </button>
       <a [routerLink]="['/login']" class="btn btn-link">Отмена</a>
     </div>

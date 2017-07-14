@@ -1,29 +1,33 @@
-import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-simple-captcha',
   templateUrl: './simple-captcha.component.html',
   styleUrls: ['./simple-captcha.component.css']
 })
-export class SimpleCaptchaComponent implements OnChanges {
+export class SimpleCaptchaComponent {
+
+  myForm: FormGroup;
+  constructor() {
+    this.myForm = new FormGroup({
+
+      "inputNumber": new FormControl("", [
+        Validators.required
+      ])
+    });
+  }
 
   @Input() captcha: string;
 
   @Input() reCaptcha: string;
-  @Output() reCaptchaChange = new EventEmitter<string>();
-  onChange(model: string) {
-
-    this.reCaptcha = model;
-    this.reCaptchaChange.emit(model);
+  @Output() onChanged = new EventEmitter<string>();
+  change(model: string) {
+    this.onChanged.emit(model);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    for (let propName in changes) {
-      let chng = changes[propName];
-      let cur  = JSON.stringify(chng.currentValue);
-      let prev = JSON.stringify(chng.previousValue);
-      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
-    }
+  submit() {
+    console.log(this.myForm);
   }
 
 }
