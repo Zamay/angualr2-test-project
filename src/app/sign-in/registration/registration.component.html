@@ -1,6 +1,6 @@
 <div class="container">
   <h4>Регистрация</h4>
-  <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+  <form [formGroup]="regForm" novalidate (ngSubmit)="submit()">
     <div class="form-group">
       <label>Имя</label>
       <input class="form-control" name="name" formControlName="userName" />
@@ -10,7 +10,7 @@
       <input class="form-control" name="email" formControlName="userEmail" />
 
       <div class="alert alert-danger"
-           *ngIf="myForm.controls['userEmail'].invalid && myForm.controls['userEmail'].touched">
+           *ngIf="regForm.controls['userEmail'].invalid && regForm.controls['userEmail'].touched">
         Некорректный email
       </div>
     </div>
@@ -22,9 +22,8 @@
     <app-simple-captcha [captcha]="random"  (onChanged)="reCaptcha($event)"></app-simple-captcha>
 
     <div class="form-group" >
-      <button class="btn btn-default" [disabled]="myForm.invalid || !reCap" >
+      <button class="btn btn-default" [disabled]="regForm.invalid || !reCap" >
         Отправить
-        {{reCap}}
       </button>
       <a [routerLink]="['/login']" class="btn btn-link">Отмена</a>
     </div>

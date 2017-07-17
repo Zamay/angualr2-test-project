@@ -11,11 +11,18 @@ export class RegistrationComponent implements OnInit {
 
   random: string;
   reCap: boolean = false;
-  myForm: FormGroup;
+  regForm: FormGroup;
 
   constructor(private simpleCaptchaService: SimpleCaptchaService ) {
+    this.createForm();
+  }
 
-    this.myForm = new FormGroup({
+  ngOnInit() {
+    this.random = '' + this.simpleCaptchaService.getRandom();
+  }
+
+  createForm() {
+    this.regForm = new FormGroup({
 
       "userName": new FormControl("User"),
       "userEmail": new FormControl("", [
@@ -28,19 +35,15 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.random = '' + this.simpleCaptchaService.getRandom();
-  }
-
   reCaptcha(e): boolean {
-    const inputNumber = e;
-    this.reCap = this.simpleCaptchaService.compareValue(this.random, inputNumber.target.value);
+    const num = e;
+    this.reCap = this.simpleCaptchaService.compareValue(this.random, num);
     console.log(this.reCap);
     return this.reCap
   }
 
   submit() {
-    console.log(this.myForm);
+    console.log(this.regForm);
   }
 
 }

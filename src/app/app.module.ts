@@ -7,6 +7,7 @@ import { LoginModule } from './sign-in/login/login.module';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistrationModule } from './sign-in/registration/registration.module';
 import { SimpleCaptchaService } from './shared/servise/simple-captcha.service';
+import { HttpService } from "./shared/servise/http.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,10 @@ import { SimpleCaptchaService } from './shared/servise/simple-captcha.service';
     RegistrationModule,
     RouterModule
   ],
-  providers: [SimpleCaptchaService],
+  providers: [
+    SimpleCaptchaService,
+    HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

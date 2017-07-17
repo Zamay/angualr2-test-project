@@ -10,19 +10,28 @@ export class SimpleCaptchaComponent {
 
   myForm: FormGroup;
   constructor() {
-    this.myForm = new FormGroup({
-
-      "inputNumber": new FormControl("", [
-        Validators.required
-      ])
-    });
+    this.createForm();
+    this.logNameChange();
   }
 
   @Input() captcha: string;
 
   @Output() onChanged = new EventEmitter<string>();
-  change(model: string) {
-    this.onChanged.emit(model);
+
+  createForm() {
+    this.myForm = new FormGroup({
+
+      'inputNumber': new FormControl('', [
+        Validators.required
+      ])
+    });
+  }
+  
+  logNameChange() {
+    const nameControl = this.myForm.get('inputNumber'); // [object Object]
+    nameControl.valueChanges.forEach(
+      (value: string) => this.onChanged.emit(value)
+    );
   }
 
   submit() {

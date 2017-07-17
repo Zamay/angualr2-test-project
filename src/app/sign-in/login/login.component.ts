@@ -11,9 +11,17 @@ export class LoginComponent implements OnInit {
   random: string;
   reCap: boolean = false;
 
-  myForm: FormGroup;
+  loginForm: FormGroup;
   constructor(private simpleCaptchaService: SimpleCaptchaService ) {
-    this.myForm = new FormGroup({
+    this.createForm()
+  }
+
+  ngOnInit() {
+    this.random = '' + this.simpleCaptchaService.getRandom();
+  }
+
+  createForm() {
+    this.loginForm = new FormGroup({
 
       "userEmail": new FormControl("", [
         Validators.required,
@@ -25,10 +33,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.random = '' + this.simpleCaptchaService.getRandom();
-  }
-
   reCaptcha(e): boolean {
     const inputNumber = e;
     this.reCap = this.simpleCaptchaService.compareValue(this.random, inputNumber.target.value);
@@ -37,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.myForm);
+    console.log(this.loginForm);
   }
 
 }
