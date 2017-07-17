@@ -3,20 +3,20 @@
   <form [formGroup]="regForm" novalidate (ngSubmit)="submit()">
     <div class="form-group">
       <label>Имя</label>
-      <input class="form-control" name="name" formControlName="userName" />
+      <input class="form-control" name="name" formControlName="name" />
     </div>
     <div class="form-group">
       <label>Email</label>
-      <input class="form-control" name="email" formControlName="userEmail" />
+      <input class="form-control" name="email" formControlName="email" />
 
       <div class="alert alert-danger"
-           *ngIf="regForm.controls['userEmail'].invalid && regForm.controls['userEmail'].touched">
+           *ngIf="regForm.controls['email'].invalid && regForm.controls['email'].touched">
         Некорректный email
       </div>
     </div>
     <div class="form-group">
       <label>Пароль</label>
-      <input class="form-control" name="password" formControlName="userPass" />
+      <input class="form-control" name="password" formControlName="password" />
     </div>
 
     <app-simple-captcha [captcha]="random"  (onChanged)="reCaptcha($event)"></app-simple-captcha>

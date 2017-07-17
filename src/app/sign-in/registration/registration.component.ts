@@ -1,6 +1,8 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.service';
+import { HttpService } from "../../shared/servise/http.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -12,8 +14,13 @@ export class RegistrationComponent implements OnInit {
   random: string;
   reCap: boolean = false;
   regForm: FormGroup;
+  loading = false;
 
-  constructor(private simpleCaptchaService: SimpleCaptchaService ) {
+  constructor(
+    private simpleCaptchaService: SimpleCaptchaService,
+    private httpService: HttpService,
+    private router: Router,
+  ) {
     this.createForm();
   }
 
@@ -24,12 +31,12 @@ export class RegistrationComponent implements OnInit {
   createForm() {
     this.regForm = new FormGroup({
 
-      "userName": new FormControl("User"),
-      "userEmail": new FormControl("", [
+      "name": new FormControl("User"),
+      "email": new FormControl("", [
         Validators.required,
         Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
       ]),
-      "userPass": new FormControl("", [
+      "password": new FormControl("", [
         Validators.required
       ])
     });
@@ -43,7 +50,19 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.regForm);
+    this.register();
+  }
+
+  register() {
+    this.loading = true;
+    this.httpService.create(this.regForm.value)
+      .subscribe(
+        data => {
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.loading = false;
+        });
   }
 
 }

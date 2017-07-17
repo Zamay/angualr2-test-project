@@ -8,32 +8,33 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HttpService {
   private userUrl = 'http://596c7d5a47d0840011326ea6.mockapi.io/reqistration';
-  private headers = new Headers({ 'Content-Type': 'application/json' });
-  private options = new RequestOptions({ headers: this.headers });
+  constructor(private http: Http) { }
 
-  constructor(private http: Http) {  }
-
-  // Получение всех записей
-  getData(): Observable<Response> {
-    return this.http.get(this.userUrl)
-      .map((resp: Response) => resp.json());
+  getAll() { // наверное не нужен !
+    return this.http.get(this.userUrl, this.token()).map((response: Response) => response.json());
   }
 
-  // Получение 1 запись
-  getRecord(id: string): Observable<Response> {
-    return this.http.get(`${this.userUrl}/${id}`)
+  getById(id: number) {
+    return this.http.get(this.userUrl + id, this.token()).map((response: Response) => response.json());
   }
 
-  // Добавить 1 запись
-  addRecord (body: Object): Observable<Response> {
-    return this.http.post(this.userUrl, body, this.options)
-      .map((res: Response) => res.json())
+  create(user: any) { // создать пользователя
+    return this.http.post(this.userUrl, user, this.token()).map((response: Response) => response.json());
   }
 
-  // Удаление
-  deleteRecord(id: string): Observable<Response> {
-    return this.http.delete(`${this.userUrl}/${id}`)
-      .map((res: Response) => res.json())
+  update(user: any) {
+    return this.http.put(this.userUrl + user.id, user, this.token()).map((response: Response) => response.json());
   }
 
+  delete(id: number) {
+    return this.http.delete(this.userUrl + id, this.token()).map((response: Response) => response.json());
+  }
+
+  private token() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      return new RequestOptions({ headers: headers });
+    }
+  }
 }
