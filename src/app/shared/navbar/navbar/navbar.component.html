@@ -1,0 +1,21 @@
+<!--<nav>-->
+  <!--<a [routerLink]="['/']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Home</a>-->
+  <!--<a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">User</a>-->
+  <!--<a >Calories</a>-->
+  <!--<a >Sign Out</a>-->
+<!--</nav>-->
+
+<div class="_container">
+  <div id="sidebar">
+    <ul>
+      <li><a [routerLink]="['/dashboard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+      <li><a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">User</a></li>
+      <li><a href="#">Calories</a></li>
+      <li><a href="#">Sign Out</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="swipe-area"></div>
+  </div>
+</div>
+

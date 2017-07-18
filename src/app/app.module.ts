@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { LoginModule } from './sign-in/login/login.module';
+import { LoginModule } from './routing/sign-in/login/login.module';
 import { AppRoutingModule } from './app-routing.module';
-import { RegistrationModule } from './sign-in/registration/registration.module';
+import { RegistrationModule } from './routing/sign-in/registration/registration.module';
 import { SimpleCaptchaService } from './shared/servise/simple-captcha.service';
 import { HttpService } from "./shared/servise/http.service";
 import { HttpModule } from "@angular/http";
 import { AuthenticationService } from "./shared/servise/authentication.service";
+import { UserModule } from "./routing/user/user.module";
+import { DashboardModule } from "./routing/dashboard/dashboard.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { AuthenticationService } from "./shared/servise/authentication.service";
     BrowserModule,
     AppRoutingModule,
     LoginModule,
+    UserModule,
+    DashboardModule,
     RegistrationModule,
     RouterModule,
     HttpModule

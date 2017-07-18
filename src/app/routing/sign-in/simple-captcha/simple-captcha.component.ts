@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-simple-captcha',
-  templateUrl: './simple-captcha.component.html',
-  styleUrls: ['./simple-captcha.component.css']
+  templateUrl: 'simple-captcha.component.html',
+  styleUrls: ['simple-captcha.component.css']
 })
 export class SimpleCaptchaComponent {
 
@@ -26,7 +26,7 @@ export class SimpleCaptchaComponent {
       ])
     });
   }
-  
+
   logNameChange() {
     const nameControl = this.myForm.get('inputNumber'); // [object Object]
     nameControl.valueChanges.forEach(

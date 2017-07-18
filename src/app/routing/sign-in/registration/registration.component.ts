@@ -1,28 +1,28 @@
+import { Router } from "@angular/router";
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.service';
-import { AuthenticationService } from "../../shared/servise/authentication.service";
-import {Router} from "@angular/router";
+
+import { SimpleCaptchaService } from '../../../shared/servise/simple-captcha.service';
+import { HttpService } from "../../../shared/servise/http.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-registration',
+  templateUrl: 'registration.component.html',
+  styleUrls: ['registration.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
+
   random: string;
   reCap: boolean = false;
+  regForm: FormGroup;
   loading = false;
-  loginForm: FormGroup;
-  currentUser: any;
 
   constructor(
     private simpleCaptchaService: SimpleCaptchaService,
-    private authenticationService: AuthenticationService,
-    private router: Router
+    private httpService: HttpService,
+    private router: Router,
   ) {
     this.createForm();
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
@@ -30,8 +30,9 @@ export class LoginComponent implements OnInit {
   }
 
   createForm() {
-    this.loginForm = new FormGroup({
+    this.regForm = new FormGroup({
 
+      "name": new FormControl("User"),
       "email": new FormControl("", [
         Validators.required,
         Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
@@ -50,12 +51,12 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.login();
+    this.register();
   }
 
-  login() {
+  register() {
     this.loading = true;
-    this.authenticationService.login(this.loginForm.value)
+    this.httpService.create(this.regForm.value)
       .subscribe(
         data => {
           this.router.navigate(['/login']);

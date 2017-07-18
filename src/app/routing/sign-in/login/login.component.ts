@@ -1,27 +1,29 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SimpleCaptchaService } from '../../shared/servise/simple-captcha.service';
-import { HttpService } from "../../shared/servise/http.service";
-import {Router} from "@angular/router";
+
+import {SimpleCaptchaService} from "../../../shared/servise/simple-captcha.service";
+import {AuthenticationService} from "../../../shared/servise/authentication.service";
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-login',
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.css'],
 })
-export class RegistrationComponent implements OnInit {
-
+export class LoginComponent implements OnInit {
   random: string;
   reCap: boolean = false;
-  regForm: FormGroup;
   loading = false;
+  loginForm: FormGroup;
+  currentUser: any;
 
   constructor(
     private simpleCaptchaService: SimpleCaptchaService,
-    private httpService: HttpService,
-    private router: Router,
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {
     this.createForm();
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
@@ -29,9 +31,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   createForm() {
-    this.regForm = new FormGroup({
+    this.loginForm = new FormGroup({
 
-      "name": new FormControl("User"),
       "email": new FormControl("", [
         Validators.required,
         Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
@@ -50,15 +51,15 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    this.register();
+    this.login();
   }
 
-  register() {
+  login() {
     this.loading = true;
-    this.httpService.create(this.regForm.value)
+    this.authenticationService.login(this.loginForm.value)
       .subscribe(
         data => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/dashboard']);
         },
         error => {
           this.loading = false;
