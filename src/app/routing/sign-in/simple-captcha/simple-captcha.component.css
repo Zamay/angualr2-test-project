@@ -1,0 +1,38 @@
+._form {
+  margin-left: -70px;
+  width: 220%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form > * {
+  margin: 10px;
+}
+
+form input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(195, 195, 216, 0.5);
+  font-size: 13px;
+  font-weight: 300;
+  color: #797A9E;
+  letter-spacing: 0.11em;
+}
+
+form input::placeholder {
+  color: #C3C3D8;
+  font-size: 10px;
+}
+
+form input:focus {
+  outline: 0;
+  border-bottom: 1px solid rgba(128, 155, 206, 0.7);
+  transition: 0.6s all ease;
+}
+
+.input-group-addon{
+  border-radius: .25rem ;
+  border: 1px solid rgba(0,0,0,.15);
+}

@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {SimpleCaptchaService} from "../../../shared/servise/simple-captcha.service";
 import {AuthenticationService} from "../../../shared/servise/authentication.service";
 
+
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
@@ -51,7 +52,8 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.login();
+    // this.login();
+    console.log(this.loginForm.value);
   }
 
   login() {
@@ -65,5 +67,5 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         });
   }
-
 }
+

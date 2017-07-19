@@ -12,6 +12,7 @@ import { HttpModule } from "@angular/http";
 import { AuthenticationService } from "./shared/servise/authentication.service";
 import { UserModule } from "./routing/user/user.module";
 import { DashboardModule } from "./routing/dashboard/dashboard.module";
+import { SignModule } from "./routing/sign-in/sign.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DashboardModule } from "./routing/dashboard/dashboard.module";
     AppRoutingModule,
     LoginModule,
     UserModule,
+    SignModule,
     DashboardModule,
     RegistrationModule,
     RouterModule,

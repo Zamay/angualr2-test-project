@@ -1,8 +1,6 @@
-<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
-  <div class="form-group">
-    <div class="input-group">
-      <label class="input-group-addon"><s><i>{{ captcha }}</i></s></label>
-      <input type="text" class="form-control"  formControlName="inputNumber"  placeholder="Введите число" >
-    </div>
+<form class="_form" [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+  <div >
+    <label class="input-group-addon"><s><i>{{ captcha }}</i></s></label>
+    <input type="text" formControlName="inputNumber" placeholder="Введите число">
   </div>
 </form>
