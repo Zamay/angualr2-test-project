@@ -1,6 +1,6 @@
 <form autocomplete="off" [formGroup]="loginForm" novalidate (ngSubmit)="submit()">
-  <input type="email" placeholder="Email" formControlName="email">
-  <input type="password" placeholder="Password" formControlName="password">
+  <input type="email" placeholder="Email" required formControlName="email">
+  <input type="password" placeholder="Password" required formControlName="password">
   <app-simple-captcha [captcha]="random"  (onChanged)="reCaptcha($event)"></app-simple-captcha>
   <button class="button" [disabled]="loginForm.invalid || !reCap">Sign Up</button>
 </form>
