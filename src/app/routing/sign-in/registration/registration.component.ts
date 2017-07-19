@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
   createForm() {
     this.regForm = new FormGroup({
 
-      "name": new FormControl("User"),
+      "name": new FormControl(""),
       "email": new FormControl("", [
         Validators.required,
         Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
