@@ -22,7 +22,8 @@ export class SimpleCaptchaComponent {
     this.myForm = new FormGroup({
 
       'inputNumber': new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.pattern("^[0-9]{5,6}")
       ])
     });
   }

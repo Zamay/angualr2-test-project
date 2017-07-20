@@ -2,8 +2,7 @@ import { Router } from "@angular/router";
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import {SimpleCaptchaService} from "../../../shared/servise/simple-captcha.service";
-import {AuthenticationService} from "../../../shared/servise/authentication.service";
+import { SimpleCaptchaService, AuthenticationService } from "../../../shared/servise/index";
 
 
 @Component({
@@ -14,8 +13,9 @@ import {AuthenticationService} from "../../../shared/servise/authentication.serv
 export class LoginComponent implements OnInit {
   random: string;
   reCap: boolean = false;
-  loading = false;
   loginForm: FormGroup;
+
+  loading = false;
   currentUser: any;
 
   constructor(

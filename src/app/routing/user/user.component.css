@@ -2,20 +2,21 @@
 ._user{
   margin-left: 250px;
   padding: 20px;
+  float: left;
+  display: flex;
 }
 
 .wrapper {
   text-align: center;
-  max-width: 600px;
+  max-width: 500px;
   position: relative;
-  /*   background: linear-gradient(to left, #306bac, #141b41); */
+     /*background: linear-gradient(to left, #306bac, #141b41);*/
   color: #fff;
-  margin: 0 auto;
-  padding: 30px;
   border-radius: 20px;
   box-shadow: 0px 0px 1px 1px #212129;
 }
 .image-wrapper img {
+  padding-right: 20px;
   width: 225px;
   border-radius: 50%;
   -webkit-user-select: none;
@@ -32,7 +33,7 @@
 
 form {
   width: 380px;
-  margin: 3em auto;
+  margin: 0 auto;
 }
 
 .group {
@@ -54,26 +55,6 @@ input {
 
 input:focus { outline: none; }
 
-/* Label */
-
-label {
-  color: #999;
-  font-size: 18px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: all 0.2s ease;
-}
-
-/* active */
-
-input:focus ~ label, input.used ~ label {
-  top: -20px;
-  transform: scale(.75); left: -2px;
-  color: #4a89dc;
-}
 /* Underline */
 
 .bar {
@@ -101,34 +82,11 @@ input:focus ~ label, input.used ~ label {
 
 input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
 
-
-/* Highlight */
-
-.highlight {
-  position: absolute;
-  height: 60%;
-  width: 100px;
-  top: 25%;
-  left: 0;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-
 /* active */
 
 input:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
 }
-
-
-/* Animations */
-
-@keyframes inputHighlighter {
-  from { background: #4a89dc; }
-  to 	{ width: 0; background: transparent; }
-}
-
 
 /* Button */
 .button {
@@ -152,7 +110,6 @@ input:focus ~ .highlight {
 }
 .button:focus { outline: 0; }
 
-
 /* Button modifiers */
 
 .buttonBlue {
@@ -165,4 +122,17 @@ input:focus ~ .highlight {
 /* ------------------ */
 .foo{
   display: flex;
+}
+
+/* ------------------ */
+
+.calories {
+  display: flex;
+  padding: 0 20px 0 20px;
+  max-width: 500px;
+}
+.info{
+  box-shadow: 0px 0px 1px 1px #212129;
+  border-radius: 20px;
+  padding: 20px;
 }
