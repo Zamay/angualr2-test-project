@@ -7,17 +7,20 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
   constructor(private http: Http) { }
 
-  login(user: any) {
-    return this.http.get('http://596c7d5a47d0840011326ea6.mockapi.io/reqistration', JSON.stringify({ user }))
+  login(e) {
+    return this.http.post('/api/authenticate', JSON.stringify({ e }))
       .map((response: Response) => {
-        console.dir(user);
+        // login successful if there's a jwt token in the response
+        let user = response.json();
         if (user && user.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
       });
   }
 
   logout() {
+    // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
   }
 }

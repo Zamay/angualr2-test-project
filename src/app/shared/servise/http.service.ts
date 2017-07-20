@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HttpService {
-  private userUrl = 'http://596c7d5a47d0840011326ea6.mockapi.io/reqistration';
+  private userUrl = 'http://5970c13810cdc70011cfc08e.mockapi.io/foot';
   constructor(private http: Http) { }
 
   getAll() { // наверное не нужен !

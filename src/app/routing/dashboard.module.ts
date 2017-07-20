@@ -6,6 +6,7 @@ import { RouterModule } from "@angular/router";
 import { CaloriesModule } from "./calories/calories.module";
 import { UserModule } from "./user/user.module";
 import {SignModule} from "./sign-in/sign.module";
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import {SignModule} from "./sign-in/sign.module";
       { path: 'dashboard', component: DashboardComponent }
     ])
   ],
-  declarations: [DashboardComponent, NavbarComponent],
+  declarations: [DashboardComponent, NavbarComponent, HomeComponent],
   exports: [DashboardComponent]
 })
 export class DashboardModule { }

@@ -1,5 +1,67 @@
 <div class="_calories">
-  <p>
-    calories works!
-  </p>
+<div class="form_foots">
+  <form [formGroup]="footsForm" novalidate (ngSubmit)="submit()">
+    <div class="form-group">
+      <label>Имя</label>
+      <input type="text" class="form-control" formControlName="name" >
+    </div>
+    <div class="form-group">
+      <label >Вес</label>
+      <input type="text" class="form-control" formControlName="weight" >
+    </div>
+    <div class="form-group">
+      <label>Белки</label>
+      <input type="text" class="form-control" formControlName="roteins">
+    </div>
+    <div class="form-group">
+      <label >Жиры</label>
+      <input type="text" class="form-control" formControlName="fats" >
+    </div>
+    <div class="form-group">
+      <label>Углеводы</label>
+      <input type="text" class="form-control" formControlName="uglev" >
+    </div>
+    <div class="form-group">
+      <label>Калории</label>
+      <input type="text" class="form-control" formControlName="kKal" >
+    </div>
+
+    <button class="btn" [disabled]="footsForm.invalid">Sign Up</button>
+  </form>
+</div>
+
+  <div class="sum_foot">
+    <h4>Количества калорий</h4>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Вес, гр</th>
+        <th>Бел, гр</th>
+        <th>Жир, гр</th>
+        <th>Угл, гр</th>
+        <th>Кал, ккал</th>
+      </tr>
+      </thead>
+      <!--<tbody *ngFor="let foot of foots" (click)="onSelect(phonebook)">-->
+      <tbody *ngFor="let foot of foots">
+      <tr>
+        <td>{{foot.name}}</td>
+        <td>{{foot.weight}}</td>
+        <td>{{foot.roteins}}</td>
+        <td>{{foot.fats}}</td>
+        <td>{{foot.uglev}}</td>
+        <td>{{foot.kKal}}</td>
+      </tr>
+      </tbody>
+      <tr>
+        <th>Имя</th>
+        <th>Вес, гр</th>
+        <th>Бел, гр</th>
+        <th>Жир, гр</th>
+        <th>Угл, гр</th>
+        <th>Кал, ккал</th>
+      </tr>
+    </table>
+  </div>
 </div>
