@@ -5,8 +5,9 @@ import { NavbarComponent } from "../shared/navbar/navbar.component";
 import { RouterModule } from "@angular/router";
 import { CaloriesModule } from "./calories/calories.module";
 import { UserModule } from "./user/user.module";
-import {SignModule} from "./sign-in/sign.module";
+import { SignModule } from "./sign-in/sign.module";
 import { HomeComponent } from './home/home.component';
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
   imports: [
@@ -14,11 +15,12 @@ import { HomeComponent } from './home/home.component';
     CaloriesModule,
     UserModule,
     SignModule,
+    HomeModule,
     RouterModule.forChild([
       { path: 'dashboard', component: DashboardComponent }
     ])
   ],
-  declarations: [DashboardComponent, NavbarComponent, HomeComponent],
+  declarations: [DashboardComponent, NavbarComponent],
   exports: [DashboardComponent]
 })
 export class DashboardModule { }

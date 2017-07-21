@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import { HttpService } from '../../shared/servise/index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
+import {log} from "util";
 
 @Component({
   selector: 'app-calories',
@@ -8,14 +10,31 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./calories.component.css']
 })
 export class CaloriesComponent implements OnInit {
+  @ViewChild("myModal")
+  myModal: any;
 
   footsForm: FormGroup;
+  footForm: FormGroup;
   foots: any = [];
-  constructor(private httpService: HttpService) { }
+  foot: any = {};
+  footId: number;
+  sumElementov: any = {
+    weight: 0,
+    roteins: 0,
+    fats: 0,
+    uglev: 0,
+    kKal: 0
+  };
+  constructor(
+    private httpService: HttpService,
+    private  router: Router
+) { }
 
   ngOnInit() {
     this.createForm();
+    this.createForm_1();
     this.httpService.getAll().subscribe(resp => this.foots = resp);
+    this.sumComponentov();
   }
 
   createForm() {
@@ -42,11 +61,66 @@ export class CaloriesComponent implements OnInit {
     });
   }
 
-  submit() {
-    // this.login();
-    console.log(this.footsForm.value);
+  createForm_1() {
+    this.footForm = new FormGroup({
+
+      "name": new FormControl(this.foot.name, [
+        Validators.required
+      ]),
+      "weight": new FormControl(this.foot.weight, [
+        Validators.required
+      ]),
+      "roteins": new FormControl(this.foot.roteins, [
+        Validators.required
+      ]),
+      "fats": new FormControl(this.foot.fats, [
+        Validators.required
+      ]),
+      "uglev": new FormControl(this.foot.uglev, [
+        Validators.required
+      ]),
+      "kKal": new FormControl(this.foot.kKal, [
+        Validators.required
+      ])
+    });
   }
-  // onSelect(selected: any) {
-  //   this.router.navigate(["phonebook", selected.id]);
-  // }
+
+  submit() {
+    this.httpService.create(this.footsForm.value).subscribe((data) => data);
+  }
+
+  onSelect(selected: any) {
+    this.showFoot(selected.id);
+    this.footId = selected.id;
+    this.myModal.open();
+    // this.router.navigate(['foot', selected.id]);
+  }
+
+  sumComponentov() {
+    this.httpService.getAll().subscribe(resp => {
+      for (let i in resp) {
+        this.sumElementov.weight  += +resp[i].weight;
+        this.sumElementov.roteins += +resp[i].roteins;
+        this.sumElementov.fats    += +resp[i].fats;
+        this.sumElementov.uglev   += +resp[i].uglev;
+        this.sumElementov.kKal    += +resp[i].kKal;
+      }
+    });
+  }
+
+  showFoot(e): any {
+    this.httpService.getById(+e).subscribe((data) => { this.foot = data; this.createForm_1() } );
+
+  }
+
+  updateFoot() {
+    this.httpService.update(this.footForm.value, this.footId).subscribe((data) => data);
+    alert('Одновление данных завершено')
+  }
+
+  deleteFoot(){
+    this.httpService.delete(this.footId).subscribe((data) => data );
+    alert('Удаленно');
+    this.myModal.close();
+  }
 }

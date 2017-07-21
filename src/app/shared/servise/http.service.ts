@@ -7,14 +7,14 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HttpService {
-  private userUrl = 'http://5970c13810cdc70011cfc08e.mockapi.io/foot';
+  private userUrl = 'http://5970c13810cdc70011cfc08e.mockapi.io/foot/';
   constructor(private http: Http) { }
 
   getAll() { // наверное не нужен !
     return this.http.get(this.userUrl, this.token()).map((response: Response) => response.json());
   }
 
-  getById(id: number) {
+  getById(id: number): any {
     return this.http.get(this.userUrl + id, this.token()).map((response: Response) => response.json());
   }
 
@@ -22,8 +22,8 @@ export class HttpService {
     return this.http.post(this.userUrl, user, this.token()).map((response: Response) => response.json());
   }
 
-  update(user: any) {
-    return this.http.put(this.userUrl + user.id, user, this.token()).map((response: Response) => response.json());
+  update(user: any, id: number) {
+    return this.http.put(this.userUrl + id, user, this.token()).map((response: Response) => response.json());
   }
 
   delete(id: number) {

@@ -21,3 +21,18 @@
   border-radius: 20px;
   box-shadow: 0px 0px 1px 1px #212129;
 }
+.form-control{
+  float: right;
+  width: 60%;
+}
+
+._label{
+  margin: 5px 0 0 10px;
+}
+._btn{
+  margin-left: 145px;
+}
+.modal-dialog{
+  width: 500px;
+}
+
