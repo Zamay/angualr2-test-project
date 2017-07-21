@@ -2,7 +2,7 @@
 
 <div class="_calories">
 <div class="form_foots">
-  <form [formGroup]="footsForm" novalidate (ngSubmit)="submit()">
+  <form [formGroup]="footsForm" novalidate>
     <div class="form-group">
       <label class="_label">Имя</label>
       <input type="text" class="form-control" formControlName="name" >
@@ -28,7 +28,7 @@
       <input type="number" class="form-control" formControlName="kKal" >
     </div>
 
-    <button class="btn _btn" [disabled]="footsForm.invalid">Отправить</button>
+    <button class="btn _btn" (ngSubmit)="submit($event)" [disabled]="footsForm.invalid">Отправить</button>
   </form>
 </div>
 
@@ -74,7 +74,7 @@
       <h1>Modal header</h1>
     </modal-header>
     <modal-content>
-      <form [formGroup]="footForm" novalidate (ngSubmit)="submit()">
+      <form [formGroup]="footForm" novalidate >
         <div class="form-group">
           <label class="_label">Имя</label>
           <input type="text" class="form-control" formControlName="name" >

@@ -10,7 +10,7 @@ export class HttpService {
   private userUrl = 'http://5970c13810cdc70011cfc08e.mockapi.io/foot/';
   constructor(private http: Http) { }
 
-  getAll() { // наверное не нужен !
+  getAll() {
     return this.http.get(this.userUrl, this.token()).map((response: Response) => response.json());
   }
 
@@ -18,7 +18,7 @@ export class HttpService {
     return this.http.get(this.userUrl + id, this.token()).map((response: Response) => response.json());
   }
 
-  create(user: any) { // создать пользователя
+  create(user: any) {
     return this.http.post(this.userUrl, user, this.token()).map((response: Response) => response.json());
   }
 

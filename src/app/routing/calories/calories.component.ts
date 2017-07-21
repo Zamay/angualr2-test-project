@@ -85,15 +85,18 @@ export class CaloriesComponent implements OnInit {
     });
   }
 
-  submit() {
-    this.httpService.create(this.footsForm.value).subscribe((data) => data);
+  submit(e) {
+    if (this.footsForm.valid) {
+      console.log(e);
+      this.httpService.create(this.footsForm.value).subscribe((data) => console.log(data));
+    }
+    console.log('e - ' + e);
   }
 
   onSelect(selected: any) {
     this.showFoot(selected.id);
     this.footId = selected.id;
     this.myModal.open();
-    // this.router.navigate(['foot', selected.id]);
   }
 
   sumComponentov() {
