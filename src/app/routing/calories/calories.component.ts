@@ -1,8 +1,8 @@
-import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '../../shared/servise/index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
-import {log} from "util";
+import { Router } from '@angular/router';
+// import {log} from "util";
 
 @Component({
   selector: 'app-calories',
@@ -10,7 +10,7 @@ import {log} from "util";
   styleUrls: ['./calories.component.css']
 })
 export class CaloriesComponent implements OnInit {
-  @ViewChild("myModal")
+  @ViewChild('myModal')
   myModal: any;
 
   footsForm: FormGroup;
@@ -25,15 +25,17 @@ export class CaloriesComponent implements OnInit {
     uglev: 0,
     kKal: 0
   };
+
   constructor(
     private httpService: HttpService,
     private  router: Router
-) { }
+  ) {
+  }
 
   ngOnInit() {
     this.createForm();
     this.createForm_1();
-    this.httpService.getAll().subscribe(resp => this.foots = resp);
+    this.getFootAll();
     this.sumComponentov();
   }
 
@@ -85,17 +87,14 @@ export class CaloriesComponent implements OnInit {
     });
   }
 
-  submit(e) {
-    if (this.footsForm.valid) {
-      console.log(e);
-      this.httpService.create(this.footsForm.value).subscribe((data) => console.log(data));
-    }
-    console.log('e - ' + e);
+  submit() {
+    this.httpService.create(this.footsForm.value).subscribe((data) => this.foots.push(data));
+    this.footsForm.reset();
   }
 
   onSelect(selected: any) {
-    this.showFoot(selected.id);
     this.footId = selected.id;
+    this.showFoot(selected.id);
     this.myModal.open();
   }
 
@@ -112,8 +111,14 @@ export class CaloriesComponent implements OnInit {
   }
 
   showFoot(e): any {
-    this.httpService.getById(+e).subscribe((data) => { this.foot = data; this.createForm_1() } );
+    this.httpService.getById(+e).subscribe((data) => {
+      this.foot = data;
+      this.createForm_1()
+    });
+  }
 
+  getFootAll() {
+    this.httpService.getAll().subscribe(resp => this.foots = resp);
   }
 
   updateFoot() {
@@ -121,8 +126,8 @@ export class CaloriesComponent implements OnInit {
     alert('Одновление данных завершено')
   }
 
-  deleteFoot(){
-    this.httpService.delete(this.footId).subscribe((data) => data );
+  deleteFoot() {
+    this.httpService.delete(this.footId).subscribe((data) => data);
     alert('Удаленно');
     this.myModal.close();
   }
