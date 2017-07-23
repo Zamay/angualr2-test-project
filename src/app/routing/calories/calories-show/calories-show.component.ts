@@ -3,14 +3,14 @@ import { HttpService } from '../../../shared/servise/http.service';
 
 @Component({
   selector: 'app-calories-output',
-  templateUrl: './calories-output.component.html',
-  styleUrls: ['./calories-output.component.css']
+  templateUrl: './calories-show.component.html',
+  styleUrls: ['./calories-show.component.css']
 })
-export class CaloriesOutputComponent implements OnInit {
+export class CaloriesShowComponent implements OnInit {
 
-  foots: any = [];
-  foot: any = {};
-  footId: number;
+  foods: any = [];
+  food: any = {};
+  foodId: number;
   sumElementov: any = {
     weight: 0,
     roteins: 0,
@@ -22,12 +22,12 @@ export class CaloriesOutputComponent implements OnInit {
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.getFootAll();
+    this.getFoodAll();
     this.sumComponentov();
   }
 
-  getFootAll() {
-    this.httpService.getAll().subscribe(resp => this.foots = resp);
+  getFoodAll() {
+    this.httpService.getAll().subscribe(resp => this.foods = resp);
   }
 
   sumComponentov() {
@@ -43,14 +43,14 @@ export class CaloriesOutputComponent implements OnInit {
   }
 
   onSelect(selected: any) {
-    this.footId = selected.id;
+    this.foodId = selected.id;
     this.showFoot(selected.id);
     // this.myModal.open();
   }
 
   showFoot(e): any {
     this.httpService.getById(+e).subscribe((data) => {
-      this.foot = data;
+      this.food = data;
     });
   }
 

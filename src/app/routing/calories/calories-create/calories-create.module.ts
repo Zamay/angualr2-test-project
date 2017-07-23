@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CaloriesInputComponent} from "./calories-input.component";
+import {CaloriesCreateComponent} from "./calories-create.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [CaloriesInputComponent],
-  exports: [CaloriesInputComponent]
+  declarations: [CaloriesCreateComponent],
+  exports: [CaloriesCreateComponent]
 })
-export class CaloriesInputModule { }
+export class CaloriesCreateModule { }

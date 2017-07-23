@@ -1,4 +1,4 @@
-<div class="sum_foot">
+<div class="sum_food">
   <h4>Количества калорий</h4>
   <table class="table table-hover">
     <thead>
@@ -11,14 +11,14 @@
       <th>Кал, ккал</th>
     </tr>
     </thead>
-    <tbody *ngFor="let foot of foots" (click)="onSelect(foot)">
+    <tbody *ngFor="let food of foods" (click)="onSelect(food)">
     <tr>
-      <td>{{foot.name}}</td>
-      <td>{{foot.weight}}</td>
-      <td>{{foot.roteins}}</td>
-      <td>{{foot.fats}}</td>
-      <td>{{foot.uglev}}</td>
-      <td>{{foot.kKal}}</td>
+      <td>{{food.name}}</td>
+      <td>{{food.weight}}</td>
+      <td>{{food.roteins}}</td>
+      <td>{{food.fats}}</td>
+      <td>{{food.uglev}}</td>
+      <td>{{food.kKal}}</td>
     </tr>
     </tbody>
     <tr>

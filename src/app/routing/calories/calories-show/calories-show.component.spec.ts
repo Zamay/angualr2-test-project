@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CaloriesInputComponent } from './calories-input.component';
+import { CaloriesShowComponent } from './calories-show.component';
 
-describe('CaloriesInputComponent', () => {
-  let component: CaloriesInputComponent;
-  let fixture: ComponentFixture<CaloriesInputComponent>;
+describe('CaloriesShowComponent', () => {
+  let component: CaloriesShowComponent;
+  let fixture: ComponentFixture<CaloriesShowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CaloriesInputComponent ]
+      declarations: [ CaloriesShowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CaloriesInputComponent);
+    fixture = TestBed.createComponent(CaloriesShowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

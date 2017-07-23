@@ -1,11 +1,12 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"  crossorigin="anonymous"> // для работы модального окна.
+<!--// для работы модального окна.-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"  crossorigin="anonymous">
 
 <modal #myModal>
   <modal-header>
     <h1>Modal header</h1>
   </modal-header>
   <modal-content>
-    <form [formGroup]="footForm" novalidate >
+    <form [formGroup]="foodForm" novalidate >
       <div class="form-group">
         <label class="_label">Имя</label>
         <input type="text" class="form-control" formControlName="name" >
@@ -34,8 +35,8 @@
 
   </modal-content>
   <modal-footer>
-    <button class="btn " (click)="updateFoot()">Save</button>
-    <button class="btn " (click)="deleteFoot()">Delete</button>
+    <button class="btn " (click)="updateFood()">Save</button>
+    <button class="btn " (click)="deleteFood()">Delete</button>
     <button class="btn btn-primary" (click)="myModal.close()">close</button>
   </modal-footer>
 </modal>

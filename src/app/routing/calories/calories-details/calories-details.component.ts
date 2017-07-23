@@ -11,9 +11,9 @@ export class CaloriesDetailsComponent implements OnInit {
   @ViewChild('myModal')
   myModal: any;
 
-  footForm: FormGroup;
-  foot: any = {};
-  footId: number;
+  foodForm: FormGroup;
+  food: any = {};
+  foodId: number;
 
   constructor(private httpService: HttpService) { }
 
@@ -22,36 +22,36 @@ export class CaloriesDetailsComponent implements OnInit {
   }
 
   createForm() {
-    this.footForm = new FormGroup({
+    this.foodForm = new FormGroup({
 
-      "name": new FormControl(this.foot.name, [
+      "name": new FormControl(this.food.name, [
         Validators.required
       ]),
-      "weight": new FormControl(this.foot.weight, [
+      "weight": new FormControl(this.food.weight, [
         Validators.required
       ]),
-      "roteins": new FormControl(this.foot.roteins, [
+      "roteins": new FormControl(this.food.roteins, [
         Validators.required
       ]),
-      "fats": new FormControl(this.foot.fats, [
+      "fats": new FormControl(this.food.fats, [
         Validators.required
       ]),
-      "uglev": new FormControl(this.foot.uglev, [
+      "uglev": new FormControl(this.food.uglev, [
         Validators.required
       ]),
-      "kKal": new FormControl(this.foot.kKal, [
+      "kKal": new FormControl(this.food.kKal, [
         Validators.required
       ])
     });
   }
 
-  updateFoot() {
-    this.httpService.update(this.footForm.value, this.footId).subscribe((data) => data);
+  updateFood() {
+    this.httpService.update(this.foodForm.value, this.foodId).subscribe((data) => data);
     alert('Одновление данных завершено')
   }
 
-  deleteFoot() {
-    this.httpService.delete(this.footId).subscribe((data) => data);
+  deleteFood() {
+    this.httpService.delete(this.foodId).subscribe((data) => data);
     alert('Удаленно');
     this.myModal.close();
   }

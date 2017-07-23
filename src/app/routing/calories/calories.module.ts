@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-modal';
 
 import { CaloriesComponent } from './calories.component';
-import {CaloriesInputModule} from "./calories-input/calories-input.module";
-import {CaloriesOutputModule} from "./calories-output/calories-output.module";
+import {CaloriesCreateModule} from "./calories-create/calories-create.module";
+import {CaloriesShowModule} from "./calories-show/calories-show.module";
 import {CaloriesDetailsModule} from "./calories-details/calories-details.module";
 
 @NgModule({
@@ -15,8 +15,8 @@ import {CaloriesDetailsModule} from "./calories-details/calories-details.module"
     ReactiveFormsModule,
     FormsModule,
     ModalModule,
-    CaloriesInputModule,
-    CaloriesOutputModule,
+    CaloriesCreateModule,
+    CaloriesShowModule,
     CaloriesDetailsModule,
     RouterModule.forChild([
       { path: 'calories', component: CaloriesComponent }

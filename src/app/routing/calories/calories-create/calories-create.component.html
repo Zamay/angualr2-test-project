@@ -1,5 +1,5 @@
-<div class="form_foots">
-  <form [formGroup]="footsForm" novalidate (ngSubmit)="submit()">
+<div class="form_foods">
+  <form [formGroup]="foodsForm" novalidate (ngSubmit)="submit()">
     <div class="form-group">
       <label class="_label">Имя</label>
       <input type="text" class="form-control" formControlName="name" >
@@ -25,6 +25,6 @@
       <input type="number" class="form-control" formControlName="kKal" >
     </div>
 
-    <button class="btn _btn" [disabled]="footsForm.invalid">Отправить</button>
+    <button class="btn _btn" [disabled]="foodsForm.invalid">Отправить</button>
   </form>
 </div>
