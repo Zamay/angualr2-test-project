@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"  crossorigin="anonymous"> // для работы модального окна.
+
+<modal #myModal>
+  <modal-header>
+    <h1>Modal header</h1>
+  </modal-header>
+  <modal-content>
+    <form [formGroup]="footForm" novalidate >
+      <div class="form-group">
+        <label class="_label">Имя</label>
+        <input type="text" class="form-control" formControlName="name" >
+      </div>
+      <div class="form-group">
+        <label class="_label" >Вес</label>
+        <input type="number" class="form-control" formControlName="weight">
+      </div>
+      <div class="form-group">
+        <label class="_label">Белки</label>
+        <input type="number" class="form-control" formControlName="roteins">
+      </div>
+      <div class="form-group">
+        <label class="_label" >Жиры</label>
+        <input type="number" class="form-control" formControlName="fats">
+      </div>
+      <div class="form-group">
+        <label class="_label">Углеводы</label>
+        <input type="number" class="form-control" formControlName="uglev">
+      </div>
+      <div class="form-group">
+        <label class="_label">Калории</label>
+        <input type="number" class="form-control" formControlName="kKal">
+      </div>
+    </form>
+
+  </modal-content>
+  <modal-footer>
+    <button class="btn " (click)="updateFoot()">Save</button>
+    <button class="btn " (click)="deleteFoot()">Delete</button>
+    <button class="btn btn-primary" (click)="myModal.close()">close</button>
+  </modal-footer>
+</modal>
+

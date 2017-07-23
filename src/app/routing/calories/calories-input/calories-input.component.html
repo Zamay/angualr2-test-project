@@ -1,7 +1,4 @@
-<modal-header>
-  <h1>Modal header</h1>
-</modal-header>
-<modal-content>
+<div class="form_foots">
   <form [formGroup]="footsForm" novalidate (ngSubmit)="submit()">
     <div class="form-group">
       <label class="_label">Имя</label>
@@ -9,28 +6,25 @@
     </div>
     <div class="form-group">
       <label class="_label" >Вес</label>
-      <input type="text" class="form-control" formControlName="weight" >
+      <input type="number" class="form-control" formControlName="weight" >
     </div>
     <div class="form-group">
       <label class="_label">Белки</label>
-      <input type="text" class="form-control" formControlName="roteins">
+      <input type="number" class="form-control" formControlName="roteins">
     </div>
     <div class="form-group">
       <label class="_label" >Жиры</label>
-      <input type="text" class="form-control" formControlName="fats" >
+      <input type="number" class="form-control" formControlName="fats" >
     </div>
     <div class="form-group">
       <label class="_label">Углеводы</label>
-      <input type="text" class="form-control" formControlName="uglev" >
+      <input type="number" class="form-control" formControlName="uglev" >
     </div>
     <div class="form-group">
       <label class="_label">Калории</label>
-      <input type="text" class="form-control" formControlName="kKal" >
+      <input type="number" class="form-control" formControlName="kKal" >
     </div>
-  </form>
 
-</modal-content>
-<modal-footer>
-  <button class="btn _btn" [disabled]="footsForm.invalid">Отправить</button>
-  <button class="btn btn-primary" (click)="myModal.close()">close</button>
-</modal-footer>
+    <button class="btn _btn" [disabled]="footsForm.invalid">Отправить</button>
+  </form>
+</div>
