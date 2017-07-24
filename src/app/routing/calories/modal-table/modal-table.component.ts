@@ -1,6 +1,8 @@
 import {Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../../shared/servise/http.service';
+import { Foot } from "../../../shared/foot";
+import {log} from "util";
 
   @Component({
     selector: 'app-modal-table',
@@ -11,16 +13,26 @@ export class ModalTableComponent implements OnChanges {
   @ViewChild('myModal')
   myModal: any;
 
-  @Input() food: any ;
+  @Input() foodAll: any ;
 
   foodForm: FormGroup;
   foodId: number;
+  food: any = {
+    name: 'User',
+    weight: 0,
+    roteins: 0,
+    fats: 0,
+    uglev: 0,
+    kKal: 0
+  };
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {
+    this.createForm();
+  }
 
   ngOnChanges() {
-    this.createForm();
-    this.foodId = this.food.id;
+    this.foodId = this.foodAll.id;
+    this.getFood();
   }
 
   createForm() {
@@ -45,6 +57,10 @@ export class ModalTableComponent implements OnChanges {
         Validators.required
       ])
     });
+  }
+
+  getFood() {
+    this.httpService.getById(this.foodId).subscribe((data) => { this.food = data; this.createForm() });
   }
 
   updateFood() {
