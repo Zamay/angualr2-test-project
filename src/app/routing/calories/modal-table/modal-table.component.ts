@@ -1,14 +1,13 @@
 import {Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../../shared/servise/http.service';
-import {log} from "util";
 
   @Component({
-    selector: 'app-calories-details',
-    templateUrl: './calories-details.component.html',
-  styleUrls: ['./calories-details.component.css']
+    selector: 'app-modal-table',
+    templateUrl: './modal-table.component.html',
+  styleUrls: ['./modal-table.component.css']
 })
-export class CaloriesDetailsComponent implements OnChanges {
+export class ModalTableComponent implements OnChanges {
   @ViewChild('myModal')
   myModal: any;
 

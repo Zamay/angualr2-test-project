@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CaloriesCreateComponent } from './calories-create.component';
+import { RightTableComponent } from './right-table.component';
 
-describe('CaloriesCreateComponent', () => {
-  let component: CaloriesCreateComponent;
-  let fixture: ComponentFixture<CaloriesCreateComponent>;
+describe('RightTableComponent', () => {
+  let component: RightTableComponent;
+  let fixture: ComponentFixture<RightTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CaloriesCreateComponent ]
+      declarations: [ RightTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CaloriesCreateComponent);
+    fixture = TestBed.createComponent(RightTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

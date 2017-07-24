@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CaloriesDetailsComponent} from "./calories-details.component";
+import {ModalTableComponent} from "./modal-table.component";
 import {ModalModule} from "ngx-modal";
 
 @NgModule({
@@ -11,7 +11,7 @@ import {ModalModule} from "ngx-modal";
     FormsModule,
     ModalModule,
   ],
-  declarations: [CaloriesDetailsComponent],
-  exports: [CaloriesDetailsComponent]
+  declarations: [ModalTableComponent],
+  exports: [ModalTableComponent]
 })
-export class CaloriesDetailsModule { }
+export class ModalTableModule { }

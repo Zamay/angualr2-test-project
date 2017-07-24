@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '../../shared/servise/index';
-import { CaloriesDetailsComponent } from './calories-details/calories-details.component';
+import { ModalTableComponent } from './modal-table/modal-table.component';
 // import {log} from "util";
 
 @Component({
@@ -14,21 +14,17 @@ export class CaloriesComponent implements OnInit {
   food: any = {};
   constructor(private httpService: HttpService) {}
 
-  @ViewChild(CaloriesDetailsComponent)
-  private detail: CaloriesDetailsComponent;
+  @ViewChild(ModalTableComponent)
+  private detail: ModalTableComponent;
 
   ngOnInit() { }
 
   create(e) {
     console.log(e);
-    // this.foods.push(e);
-    // or
-    this.httpService.create(e).subscribe((data) => this.foods.push(data));
+    this.foods.push(e);
   }
 
   modal(e) {
-    // console.log(e);
-
     this.food = e;
     this.detail.myModal.open()
   }

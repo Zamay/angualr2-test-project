@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-modal';
 
 import { CaloriesComponent } from './calories.component';
-import {CaloriesCreateModule} from "./calories-create/calories-create.module";
-import {CaloriesShowModule} from "./calories-show/calories-show.module";
-import {CaloriesDetailsModule} from "./calories-details/calories-details.module";
+import {LeftTableModule} from "./left-table/left-table.module";
+import {RightTableModule} from "./right-table/right-table.module";
+import {ModalTableModule} from "./modal-table/modal-table.module";
 
 @NgModule({
   imports: [
@@ -15,9 +15,9 @@ import {CaloriesDetailsModule} from "./calories-details/calories-details.module"
     ReactiveFormsModule,
     FormsModule,
     ModalModule,
-    CaloriesCreateModule,
-    CaloriesShowModule,
-    CaloriesDetailsModule,
+    LeftTableModule,
+    RightTableModule,
+    ModalTableModule,
     RouterModule.forChild([
       { path: 'calories', component: CaloriesComponent }
     ])

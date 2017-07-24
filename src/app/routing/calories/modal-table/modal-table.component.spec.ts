@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CaloriesShowComponent } from './calories-show.component';
+import { ModalTableComponent } from './modal-table.component';
 
-describe('CaloriesShowComponent', () => {
-  let component: CaloriesShowComponent;
-  let fixture: ComponentFixture<CaloriesShowComponent>;
+describe('ModalTableComponent', () => {
+  let component: ModalTableComponent;
+  let fixture: ComponentFixture<ModalTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CaloriesShowComponent ]
+      declarations: [ ModalTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CaloriesShowComponent);
+    fixture = TestBed.createComponent(ModalTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

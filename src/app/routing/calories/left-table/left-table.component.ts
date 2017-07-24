@@ -4,11 +4,11 @@ import { HttpService } from '../../../shared/servise/http.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-calories-create',
-  templateUrl: './calories-create.component.html',
-  styleUrls: ['./calories-create.component.css']
+  selector: 'app-left-table',
+  templateUrl: './left-table.component.html',
+  styleUrls: ['./left-table.component.css']
 })
-export class CaloriesCreateComponent implements OnInit {
+export class LeftTableComponent implements OnInit {
 
   foodsForm: FormGroup;
 
@@ -45,9 +45,7 @@ export class CaloriesCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.httpService.create(this.foodsForm.value).subscribe((data) => (data));
-    // or
-    this.add.emit(this.foodsForm.value);
+    this.httpService.create(this.foodsForm.value).subscribe((data) => this.add.emit(data), (error) => error);
     this.foodsForm.reset();
   }
 }

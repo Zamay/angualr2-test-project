@@ -1,12 +1,12 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges, DoCheck} from '@angular/core';
 import { HttpService } from '../../../shared/servise/http.service';
 
 @Component({
-  selector: 'app-calories-output',
-  templateUrl: './calories-show.component.html',
-  styleUrls: ['./calories-show.component.css']
+  selector: 'app-right-table',
+  templateUrl: './right-table.component.html',
+  styleUrls: ['./right-table.component.css']
 })
-export class CaloriesShowComponent implements OnChanges {
+export class RightTableComponent implements OnInit, DoCheck {
 
   @Input() foods: any = [];
   @Output() open = new EventEmitter();
@@ -21,17 +21,17 @@ export class CaloriesShowComponent implements OnChanges {
 
   constructor(private httpService: HttpService) { }
 
-  ngOnChanges() {
+  ngOnInit() {
     this.getFoodAll();
-    this.sumComponentov();
+  }
+
+  ngDoCheck() {
+    this.updateFoods();
   }
 
   getFoodAll() {
-    this.httpService.getAll().subscribe(resp => this.foods = resp);
-  }
-
-  sumComponentov() {
     this.httpService.getAll().subscribe(resp => {
+      this.foods = resp;
       for (let i in resp) {
         this.sumElementov.weight  += +resp[i].weight;
         this.sumElementov.roteins += +resp[i].roteins;
@@ -45,5 +45,10 @@ export class CaloriesShowComponent implements OnChanges {
   onSelect(selected: any) {
     this.open.emit(selected);
   }
+
+  updateFoods() {
+    this.httpService.getAll().subscribe(resp => this.foods = resp);
+  }
+
 
 }
