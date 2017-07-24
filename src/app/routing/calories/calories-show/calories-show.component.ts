@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import { HttpService } from '../../../shared/servise/http.service';
 
 @Component({
@@ -6,11 +6,11 @@ import { HttpService } from '../../../shared/servise/http.service';
   templateUrl: './calories-show.component.html',
   styleUrls: ['./calories-show.component.css']
 })
-export class CaloriesShowComponent implements OnInit {
+export class CaloriesShowComponent implements OnChanges {
 
-  foods: any = [];
-  food: any = {};
-  foodId: number;
+  @Input() foods: any = [];
+  @Output() open = new EventEmitter();
+
   sumElementov: any = {
     weight: 0,
     roteins: 0,
@@ -21,7 +21,7 @@ export class CaloriesShowComponent implements OnInit {
 
   constructor(private httpService: HttpService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.getFoodAll();
     this.sumComponentov();
   }
@@ -43,15 +43,7 @@ export class CaloriesShowComponent implements OnInit {
   }
 
   onSelect(selected: any) {
-    this.foodId = selected.id;
-    this.showFoot(selected.id);
-    // this.myModal.open();
-  }
-
-  showFoot(e): any {
-    this.httpService.getById(+e).subscribe((data) => {
-      this.food = data;
-    });
+    this.open.emit(selected);
   }
 
 }

@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../../shared/servise/http.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-calories-input',
+  selector: 'app-calories-create',
   templateUrl: './calories-create.component.html',
   styleUrls: ['./calories-create.component.css']
 })
 export class CaloriesCreateComponent implements OnInit {
 
   foodsForm: FormGroup;
-  foods: any = [];
 
   constructor(private httpService: HttpService) {}
+
+  @Output() add = new EventEmitter();
 
   ngOnInit() {
     this.createForm();
@@ -43,8 +44,10 @@ export class CaloriesCreateComponent implements OnInit {
     });
   }
 
-  submit() {
-    this.httpService.create(this.foodsForm.value).subscribe((data) => this.foods.push(data));
+  onSubmit() {
+    // this.httpService.create(this.foodsForm.value).subscribe((data) => (data));
+    // or
+    this.add.emit(this.foodsForm.value);
     this.foodsForm.reset();
   }
 }

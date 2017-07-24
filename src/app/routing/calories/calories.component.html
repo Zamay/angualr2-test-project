@@ -1,7 +1,9 @@
 <div class="_calories">
-  <app-calories-input></app-calories-input>
+  <app-calories-create (add)="create($event)"></app-calories-create>
 
-  <app-calories-output></app-calories-output>
+  <app-calories-output [foods]="foods" (open)="modal($event)"></app-calories-output>
 </div>
 
-<app-calories-details> </app-calories-details>
+<div>
+  <app-calories-details #detail [food]="food" > </app-calories-details>
+</div>

@@ -1,24 +1,27 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {HttpService} from "../../../shared/servise/http.service";
+import { HttpService } from '../../../shared/servise/http.service';
+import {log} from "util";
 
   @Component({
     selector: 'app-calories-details',
     templateUrl: './calories-details.component.html',
   styleUrls: ['./calories-details.component.css']
 })
-export class CaloriesDetailsComponent implements OnInit {
+export class CaloriesDetailsComponent implements OnChanges {
   @ViewChild('myModal')
   myModal: any;
 
+  @Input() food: any ;
+
   foodForm: FormGroup;
-  food: any = {};
   foodId: number;
 
   constructor(private httpService: HttpService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.createForm();
+    this.foodId = this.food.id;
   }
 
   createForm() {

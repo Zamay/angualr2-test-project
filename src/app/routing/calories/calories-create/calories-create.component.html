@@ -1,5 +1,5 @@
 <div class="form_foods">
-  <form [formGroup]="foodsForm" novalidate (ngSubmit)="submit()">
+  <form [formGroup]="foodsForm" novalidate (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label class="_label">Имя</label>
       <input type="text" class="form-control" formControlName="name" >
