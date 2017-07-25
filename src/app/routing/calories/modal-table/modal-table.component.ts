@@ -1,8 +1,7 @@
 import {Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../../shared/servise/http.service';
-import { Foot } from "../../../shared/foot";
-import {log} from "util";
+import { Foot } from '../../../shared/foot';
 
   @Component({
     selector: 'app-modal-table',
@@ -13,25 +12,28 @@ export class ModalTableComponent implements OnChanges {
   @ViewChild('myModal')
   myModal: any;
 
-  @Input() foodAll: any ;
+  @Input() foodAll: Foot;
 
   foodForm: FormGroup;
-  foodId: number;
-  food: any = {
-    name: 'User',
-    weight: 0,
-    roteins: 0,
-    fats: 0,
-    uglev: 0,
-    kKal: 0
-  };
+  food: Foot;
 
   constructor(private httpService: HttpService) {
+
+    if (this.foodAll === undefined ) {
+      this.foodAll = {
+        id: 1,
+        name: '',
+        weight: 0,
+        roteins: 0,
+        fats: 0,
+        uglev: 0,
+        kKal: 0
+      }
+    }
     this.createForm();
   }
 
   ngOnChanges() {
-    this.foodId = this.foodAll.id;
     this.getFood();
   }
 
@@ -60,16 +62,16 @@ export class ModalTableComponent implements OnChanges {
   }
 
   getFood() {
-    this.httpService.getById(this.foodId).subscribe((data) => { this.food = data; this.createForm() });
+    this.httpService.getById(this.foodAll.id).subscribe((data) => { this.food = data; this.createForm() });
   }
 
   updateFood() {
-    this.httpService.update(this.foodForm.value, this.foodId).subscribe((data) => data);
+    this.httpService.update(this.foodForm.value, this.foodAll.id).subscribe((data) => data);
     alert('Одновление данных завершено')
   }
 
   deleteFood() {
-    this.httpService.delete(this.foodId).subscribe((data) => data);
+    this.httpService.delete(this.foodAll.id).subscribe((data) => data);
     alert('Удаленно');
     this.myModal.close();
   }
