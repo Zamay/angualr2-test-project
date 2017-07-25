@@ -8,6 +8,7 @@ import { CaloriesComponent } from './calories.component';
 import {LeftTableModule} from "./left-table/left-table.module";
 import {RightTableModule} from "./right-table/right-table.module";
 import {ModalTableModule} from "./modal-table/modal-table.module";
+import {AuthGuardService} from "../../shared/servise/auth-guard.service";
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import {ModalTableModule} from "./modal-table/modal-table.module";
     RightTableModule,
     ModalTableModule,
     RouterModule.forChild([
-      { path: 'calories', component: CaloriesComponent }
+      { path: 'calories', component: CaloriesComponent, canActivate: [AuthGuardService]}
     ])
   ],
   declarations: [CaloriesComponent],

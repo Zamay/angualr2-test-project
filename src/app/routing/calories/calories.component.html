@@ -1,7 +1,8 @@
 <div class="_calories">
   <app-left-table (add)="create($event)"></app-left-table>
 
-  <app-right-table [foods]="foods" (open)="modal($event)"></app-right-table>
+  <!--<app-right-table [foods]="foods" (open)="modal($event)"></app-right-table>-->
+  <app-right-table (open)="modal($event)"></app-right-table>
 </div>
 
 <div>

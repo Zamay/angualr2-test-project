@@ -1,16 +1,24 @@
 <div class="container">
-  <div class="message signup">
-    <div class="btn-wrapper">
-      <button class="button" id="signup" (click)="signUp_2()">SignUp</button>
-      <button class="button" id="login" (click)="login_2()"> Login</button>
+  <div class="_login" *ngIf="!userService.isLoggedIn">
+    <div class="message signup">
+      <div class="btn-wrapper">
+        <button class="button" id="signup" (click)="signUp_2()">SignUp</button>
+        <button class="button" id="login" (click)="login_2()"> Login</button>
+      </div>
+    </div>
+    <div class="form form--signup">
+      <div class="form--heading">Welcome! Sign Up</div>
+      <app-registration></app-registration>
+    </div>
+    <div class="form form--login">
+      <div class="form--heading">Welcome back! </div>
+      <app-login></app-login>
     </div>
   </div>
-  <div class="form form--signup">
-    <div class="form--heading">Welcome! Sign Up</div>
-    <app-registration></app-registration>
+
+  <div class="_logout" *ngIf="userService.isLoggedIn">
+    <br>
+    <button class="btn" (click)="click()"> Выход </button>
   </div>
-  <div class="form form--login">
-    <div class="form--heading">Welcome back! </div>
-    <app-login></app-login>
-  </div>
+
 </div>

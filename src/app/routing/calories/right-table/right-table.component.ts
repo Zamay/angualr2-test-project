@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter, OnChanges, DoCheck} from '@angular/core';
 import { HttpService } from '../../../shared/servise/http.service';
 import {Food} from "../../../shared/food";
+import {UserService} from "../../../shared/servise/user.service";
 
 @Component({
   selector: 'app-right-table',
@@ -9,7 +10,8 @@ import {Food} from "../../../shared/food";
 })
 export class RightTableComponent implements OnInit, DoCheck {
 
-  @Input() foods: Food;
+  // @Input() foods: Food;
+  foods: any = [];
   @Output() open = new EventEmitter();
 
   sumElementov: any = {
@@ -20,7 +22,10 @@ export class RightTableComponent implements OnInit, DoCheck {
     kKal: 0
   };
 
-  constructor(private httpService: HttpService) { }
+  constructor(
+    private httpService: HttpService,
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
     this.getFoodAll();
@@ -32,14 +37,7 @@ export class RightTableComponent implements OnInit, DoCheck {
 
   getFoodAll() {
     this.httpService.getAll().subscribe(resp => {
-      this.foods = resp;
-      for (let i in resp) {
-        this.sumElementov.weight  += +resp[i].weight;
-        this.sumElementov.roteins += +resp[i].roteins;
-        this.sumElementov.fats    += +resp[i].fats;
-        this.sumElementov.uglev   += +resp[i].uglev;
-        this.sumElementov.kKal    += +resp[i].kKal;
-      }
+      this.compareUserId(resp);
     });
   }
 
@@ -48,8 +46,23 @@ export class RightTableComponent implements OnInit, DoCheck {
   }
 
   updateFoods() {
-    this.httpService.getAll().subscribe(resp => this.foods = resp);
+    // this.httpService.getAll().subscribe(resp => this.compareUserId(resp));
   }
 
-
+  compareUserId(resp) {
+    // console.log(resp);
+    // console.log('userId - ' + this.userService.currentUser.id);
+    resp.forEach(val => {
+      if (val.userId == this.userService.currentUser.id) {
+        this.foods.push(val);
+        for (let i in resp) {
+          this.sumElementov.weight  += +resp[i].weight;
+          this.sumElementov.roteins += +resp[i].roteins;
+          this.sumElementov.fats    += +resp[i].fats;
+          this.sumElementov.uglev   += +resp[i].uglev;
+          this.sumElementov.kKal    += +resp[i].kKal;
+        }
+      }
+    });
+  }
 }

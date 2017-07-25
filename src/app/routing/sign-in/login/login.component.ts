@@ -2,7 +2,8 @@ import { Router } from "@angular/router";
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { SimpleCaptchaService, AuthenticationService } from "../../../shared/servise/index";
+import { SimpleCaptchaService } from "../../../shared/servise/simple-captcha.service";
+import { UserService } from "../../../shared/servise/user.service";
 
 
 @Component({
@@ -14,13 +15,11 @@ export class LoginComponent implements OnInit {
   random: string;
   reCap: boolean = false;
   loginForm: FormGroup;
-
-  loading = false;
   currentUser: any;
 
   constructor(
     private simpleCaptchaService: SimpleCaptchaService,
-    private authenticationService: AuthenticationService,
+    private userService: UserService,
     private router: Router
   ) {
     this.createForm();
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit {
 
       "email": new FormControl("", [
         Validators.required,
-        Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
+        // Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
       ]),
       "password": new FormControl("", [
         Validators.required
@@ -51,21 +50,12 @@ export class LoginComponent implements OnInit {
     return this.reCap
   }
 
+  // Вход
   submit() {
-    // this.login();
-    console.log(this.loginForm.value);
-  }
+    this.userService.login(this.loginForm.value)
+    if (this.userService.isLoggedIn) {
 
-  login() {
-    this.loading = true;
-    this.authenticationService.login(this.loginForm.value)
-      .subscribe(
-        data => {
-          this.router.navigate(['/dashboard']);
-        },
-        error => {
-          this.loading = false;
-        });
+    }
   }
 }
 

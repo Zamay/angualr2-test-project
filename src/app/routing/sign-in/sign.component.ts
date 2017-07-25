@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
+import { UserService } from "../../shared/servise/user.service";
+
 @Component({
   selector: 'app-sign',
   templateUrl: 'sign.component.html',
@@ -8,7 +10,7 @@ import * as $ from 'jquery';
 })
 export class SignComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -28,5 +30,9 @@ export class SignComponent implements OnInit {
       $(".message").removeClass("signup");
     }
     $(".message").addClass("login");
+  }
+
+  click() {
+    this.userService.logout();
   }
 }

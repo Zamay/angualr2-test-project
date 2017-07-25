@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../../shared/servise/http.service';
 import { Router } from '@angular/router';
+import { UserService } from "../../../shared/servise/user.service";
 
 @Component({
   selector: 'app-left-table',
@@ -12,7 +13,10 @@ export class LeftTableComponent implements OnInit {
 
   foodsForm: FormGroup;
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    private userService: UserService
+  ) {}
 
   @Output() add = new EventEmitter();
 
@@ -21,8 +25,11 @@ export class LeftTableComponent implements OnInit {
   }
 
   createForm() {
+
+    console.log(this.userService.currentUser.id);
     this.foodsForm = new FormGroup({
 
+      "userId": new FormControl(this.userService.currentUser.id),
       "name": new FormControl("", [
         Validators.required
       ]),

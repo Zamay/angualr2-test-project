@@ -130,3 +130,7 @@ form input:focus {
     transform: scale(0.8);
   }
 }
+
+._login {
+  display: -webkit-box;
+}

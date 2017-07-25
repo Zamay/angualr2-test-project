@@ -1,3 +1,4 @@
+///<reference path="../shared/servise/user.service.ts"/>
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from "./dashboard.component";
@@ -8,6 +9,7 @@ import { UserModule } from "./user/user.module";
 import { SignModule } from "./sign-in/sign.module";
 import { HomeModule } from "./home/home.module";
 import { UserService } from "../shared/servise/user.service";
+import {AuthGuardService} from "../shared/servise/auth-guard.service";
 
 @NgModule({
   imports: [
@@ -20,8 +22,14 @@ import { UserService } from "../shared/servise/user.service";
       { path: '**', redirectTo: '/home' }
     ])
   ],
-  declarations: [DashboardComponent, NavbarComponent],
-  providers: [UserService],
+  declarations: [
+    DashboardComponent,
+    NavbarComponent
+  ],
+  providers: [
+    AuthGuardService,
+    UserService
+    ],
   exports: [DashboardComponent]
 })
 export class DashboardModule { }
