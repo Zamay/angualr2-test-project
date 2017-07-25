@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter, OnChanges, DoCheck} from '@angular/core';
 import { HttpService } from '../../../shared/servise/http.service';
+import {Food} from "../../../shared/food";
 
 @Component({
   selector: 'app-right-table',
@@ -8,7 +9,7 @@ import { HttpService } from '../../../shared/servise/http.service';
 })
 export class RightTableComponent implements OnInit, DoCheck {
 
-  @Input() foods: any = [];
+  @Input() foods: Food;
   @Output() open = new EventEmitter();
 
   sumElementov: any = {

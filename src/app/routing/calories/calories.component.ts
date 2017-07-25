@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '../../shared/servise/index';
 import { ModalTableComponent } from './modal-table/modal-table.component';
-// import {log} from "util";
 
 @Component({
   selector: 'app-calories',

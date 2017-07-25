@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../../shared/servise/http.service';
-import { Foot } from '../../../shared/foot';
+import { Food } from '../../../shared/food';
 
   @Component({
     selector: 'app-modal-table',
@@ -12,15 +12,15 @@ export class ModalTableComponent implements OnChanges {
   @ViewChild('myModal')
   myModal: any;
 
-  @Input() foodAll: Foot;
+  @Input() foodAll: Food;
 
   foodForm: FormGroup;
-  food: Foot;
+  food: Food;
 
   constructor(private httpService: HttpService) {
 
     if (this.foodAll === undefined ) {
-      this.foodAll = {
+      this.food = {
         id: 1,
         name: '',
         weight: 0,

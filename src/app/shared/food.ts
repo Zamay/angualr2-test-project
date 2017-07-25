@@ -1,4 +1,4 @@
-export class Foot {
+export class Food {
   public id?: any;
   public name: string;
   public weight: number;
