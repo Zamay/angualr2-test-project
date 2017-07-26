@@ -1,7 +1,13 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnChanges, DoCheck} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  DoCheck
+} from '@angular/core';
+
 import { HttpService } from '../../../shared/servise/http.service';
-import {Food} from "../../../shared/food";
-import {UserService} from "../../../shared/servise/user.service";
+import { UserService } from '../../../shared/servise/user.service';
 
 @Component({
   selector: 'app-right-table',

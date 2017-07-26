@@ -1,5 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpService } from '../../shared/servise/index';
+  import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+
+import { HttpService } from '../../shared/servise/http.service';
 import { ModalTableComponent } from './modal-table/modal-table.component';
 
 @Component({
@@ -7,20 +12,18 @@ import { ModalTableComponent } from './modal-table/modal-table.component';
   templateUrl: './calories.component.html',
   styleUrls: ['./calories.component.css']
 })
-export class CaloriesComponent implements OnInit {
+export class CaloriesComponent {
 
-  foods: any = [];
+  // foods: any = [];
   food: any = {};
-  constructor(private httpService: HttpService) {}
-
   @ViewChild(ModalTableComponent)
   private detail: ModalTableComponent;
 
-  ngOnInit() { }
+  constructor(private httpService: HttpService) {}
 
   create(e) {
     console.log(e);
-    this.foods.push(e);
+    // this.foods.push(e);
   }
 
   modal(e) {

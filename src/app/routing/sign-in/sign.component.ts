@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
-import { UserService } from "../../shared/servise/user.service";
+import { UserService } from '../../shared/servise/user.service';
 
 @Component({
   selector: 'app-sign',

@@ -1,8 +1,16 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output
+} from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators
+} from '@angular/forms';
 import { HttpService } from '../../../shared/servise/http.service';
-import { Router } from '@angular/router';
-import { UserService } from "../../../shared/servise/user.service";
+import { UserService } from '../../../shared/servise/user.service';
 
 @Component({
   selector: 'app-left-table',
@@ -13,12 +21,12 @@ export class LeftTableComponent implements OnInit {
 
   foodsForm: FormGroup;
 
+  @Output() add = new EventEmitter();
+
   constructor(
     private httpService: HttpService,
     private userService: UserService
   ) {}
-
-  @Output() add = new EventEmitter();
 
   ngOnInit() {
     this.createForm();
@@ -52,7 +60,8 @@ export class LeftTableComponent implements OnInit {
   }
 
   onSubmit() {
-    this.httpService.create(this.foodsForm.value).subscribe((data) => this.add.emit(data), (error) => error);
+    this.httpService.create(this.foodsForm.value)
+      .subscribe((data) => this.add.emit(data), (error) => error);
     this.foodsForm.reset();
   }
 }

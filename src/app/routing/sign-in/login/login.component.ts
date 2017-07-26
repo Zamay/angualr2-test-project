@@ -1,9 +1,9 @@
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { SimpleCaptchaService } from "../../../shared/servise/simple-captcha.service";
-import { UserService } from "../../../shared/servise/user.service";
+import { SimpleCaptchaService } from '../../../shared/servise/simple-captcha.service';
+import { UserService } from '../../../shared/servise/user.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   random: string;
   reCap: boolean = false;
   loginForm: FormGroup;
-  currentUser: any;
+  // currentUser: any;
 
   constructor(
     private simpleCaptchaService: SimpleCaptchaService,
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.createForm();
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
