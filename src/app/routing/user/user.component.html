@@ -2,27 +2,27 @@
 <div class="_user wrapper">
   <div class="image-wrapper">
     <img src="//cdn0.iconfinder.com/data/icons/user-pictures/100/male-256.png" />
-    <h1 class="name">Mitya Zamay</h1>
+    <h1 class="name">{{currentUser.name}}</h1>
   </div>
   <form autocomplete="off" [formGroup]="userForm" novalidate (ngSubmit)="submit()">
 
     <div class="foo">
       <div class="group">
-        <input type="text" class="form-control" placeholder="Рост" formControlName="userHeight"><span class="bar"></span>
+        <input type="text" class="form-control" placeholder="Рост" formControlName="userHeight" data-toggle="tooltip" title="Ваш рост"><span class="bar"></span>
       </div>
       <div class="group">
-        <input type="email" class="form-control" placeholder="Вес" formControlName="userWeight"><span class="bar"></span>
+        <input type="email" class="form-control" placeholder="Вес" formControlName="userWeight" data-toggle="tooltip" title="Ваш вес"><span class="bar"></span>
       </div>
       <div class="group">
-        <input type="email" class="form-control" placeholder="Возраст" formControlName="userAge"><span class="bar"></span>
+        <input type="email" class="form-control" placeholder="Возраст" formControlName="userAge" data-toggle="tooltip" title="Ваш возраст"><span class="bar"></span>
       </div>
     </div>
 
     <div class="group">
-      <input type="date" formControlName="userBirthday">
+      <input type="date" formControlName="userBirthday" data-toggle="tooltip" title="Ваш день рождения">
     </div>
     <div class="group">
-      <input type="email"placeholder="Email" formControlName="userEmail"><span class="bar"></span>
+      <input type="email"placeholder="Email" formControlName="userEmail" data-toggle="tooltip" title="Ваша почта"><span class="bar"></span>
     </div>
     <button class="button buttonBlue" [disabled]="userForm.invalid">Сохранить</button>
 
@@ -41,3 +41,10 @@
   </div>
 </div>
 <br>
+
+
+
+
+
+
+

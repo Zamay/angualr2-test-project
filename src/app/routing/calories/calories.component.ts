@@ -14,8 +14,9 @@ import { ModalTableComponent } from './modal-table/modal-table.component';
 })
 export class CaloriesComponent {
 
-  // foods: any = [];
+  foods: any = [];
   food: any = {};
+
   @ViewChild(ModalTableComponent)
   private detail: ModalTableComponent;
 
@@ -23,7 +24,11 @@ export class CaloriesComponent {
 
   create(e) {
     console.log(e);
-    // this.foods.push(e);
+    this.foods.push(e);
+  }
+
+  update(e) {
+
   }
 
   modal(e) {

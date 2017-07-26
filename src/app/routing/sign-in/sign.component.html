@@ -2,17 +2,17 @@
   <div class="_login" *ngIf="!userService.isLoggedIn">
     <div class="message signup">
       <div class="btn-wrapper">
-        <button class="button" id="signup" (click)="signUp_2()">SignUp</button>
-        <button class="button" id="login" (click)="login_2()"> Login</button>
+        <button class="button" id="signup" (click)="signUp_2()">Login</button>
+        <button class="button" id="login" (click)="login_2()">SignUp</button>
       </div>
     </div>
     <div class="form form--signup">
-      <div class="form--heading">Welcome! Sign Up</div>
-      <app-registration></app-registration>
-    </div>
-    <div class="form form--login">
       <div class="form--heading">Welcome back! </div>
       <app-login></app-login>
+    </div>
+    <div class="form form--login">
+      <div class="form--heading">Welcome! Sign Up</div>
+      <app-registration></app-registration>
     </div>
   </div>
 

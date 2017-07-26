@@ -1,6 +1,6 @@
 import {
   Component,
-  EventEmitter,
+  EventEmitter, OnChanges,
   OnInit,
   Output
 } from '@angular/core';
@@ -9,35 +9,34 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
+
 import { HttpService } from '../../../shared/servise/http.service';
-import { UserService } from '../../../shared/servise/user.service';
+import { User } from '../../../shared/user';
 
 @Component({
   selector: 'app-left-table',
   templateUrl: './left-table.component.html',
   styleUrls: ['./left-table.component.css']
 })
-export class LeftTableComponent implements OnInit {
+export class LeftTableComponent implements OnChanges {
 
+  currentUser: User;
   foodsForm: FormGroup;
-
   @Output() add = new EventEmitter();
 
-  constructor(
-    private httpService: HttpService,
-    private userService: UserService
-  ) {}
-
-  ngOnInit() {
+  constructor(private httpService: HttpService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.createForm();
   }
 
-  createForm() {
+  ngOnChanges() {
 
-    console.log(this.userService.currentUser.id);
+  }
+
+  createForm() {
     this.foodsForm = new FormGroup({
 
-      "userId": new FormControl(this.userService.currentUser.id),
+      "userId": new FormControl(this.currentUser.id),
       "name": new FormControl("", [
         Validators.required
       ]),
@@ -63,5 +62,6 @@ export class LeftTableComponent implements OnInit {
     this.httpService.create(this.foodsForm.value)
       .subscribe((data) => this.add.emit(data), (error) => error);
     this.foodsForm.reset();
+    this.createForm();
   }
 }

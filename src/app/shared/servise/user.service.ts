@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 export class UserService {
   private userUrl = 'http://596c7d5a47d0840011326ea6.mockapi.io/user/';
 
-  public currentUser: User = JSON.parse(localStorage.getItem('currentUser'));
+  public currentUser: User;
   public isLoggedIn: boolean = JSON.parse(localStorage.getItem('currentUser'));
   private users: any;
 
@@ -63,15 +63,17 @@ export class UserService {
     const that = this;
     this.users.find((val) => {
       if ( val.email === user.email && val.password === user.password) {
-          this.setToLocalStorage(val);
-          that.isLoggedIn = true;
-          console.log('log');
-          this.router.navigate(['/user']);
-          return true;
-        } else {
-          console.log('Проверяю ... ');
-          return false;
-        }
+        // console.log(this.currentUser);
+        this.setToLocalStorage(val);
+        that.isLoggedIn = true;
+        console.log('log');
+        // console.log(this.currentUser);
+        this.router.navigate(['/user']);
+        return true;
+      } else {
+        console.log('Проверяю ... ');
+        return false;
+      }
       })
   }
 

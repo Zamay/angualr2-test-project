@@ -1,5 +1,18 @@
-import {Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  OnChanges,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators
+} from '@angular/forms';
+
 import { HttpService } from '../../../shared/servise/http.service';
 import { Food } from '../../../shared/food';
 
@@ -13,6 +26,7 @@ export class ModalTableComponent implements OnChanges {
   myModal: any;
 
   @Input() foodAll: Food;
+  @Output() update = new EventEmitter();
 
   foodForm: FormGroup;
   food: Food;
@@ -62,11 +76,21 @@ export class ModalTableComponent implements OnChanges {
   }
 
   getFood() {
-    this.httpService.getById(this.foodAll.id).subscribe((data) => { this.food = data; this.createForm() });
+    this.httpService.getById(this.foodAll.id)
+      .subscribe((data) => {
+      this.food = data;
+      this.createForm();
+    });
   }
 
+
+
+
+
+
   updateFood() {
-    this.httpService.update(this.foodForm.value, this.foodAll.id).subscribe((data) => data);
+    this.httpService.update(this.foodForm.value, this.foodAll.id)
+      .subscribe((data) => (data));
     alert('Одновление данных завершено')
   }
 

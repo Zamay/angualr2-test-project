@@ -1,5 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators
+} from '@angular/forms';
+
+import { UserService } from 'app/shared/servise/user.service';
+import {User} from "../../shared/user";
 
 @Component({
   selector: 'app-user',
@@ -8,6 +18,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class UserComponent implements OnInit {
 
+  currentUser: User;
   userForm: FormGroup;
   result: boolean ;
   userResult: any = {
@@ -16,7 +27,8 @@ export class UserComponent implements OnInit {
     height: ''
   };
 
-  constructor() {
+  constructor(private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.createForm();
   }
 
@@ -24,6 +36,7 @@ export class UserComponent implements OnInit {
   }
 
   createForm() {
+    console.log(this.currentUser);
     this.userForm = new FormGroup({
 
       "userHeight": new FormControl("170", [
@@ -41,9 +54,9 @@ export class UserComponent implements OnInit {
       "userBirthday": new FormControl("2017-07-07", [
         Validators.required
       ]),
-      "userEmail": new FormControl("qwew@qwe.wq", [
+      "userEmail": new FormControl(this.currentUser.email, [
         Validators.required,
-        Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
+        // Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
       ])
     });
   }
@@ -54,7 +67,7 @@ export class UserComponent implements OnInit {
     this.calories()
   }
 
-  calories(){
+  calories() {
     let weight = this.userForm.value.userWeight
     let height = this.userForm.value.userHeight;
     let age = this.userForm.value.userAge;
