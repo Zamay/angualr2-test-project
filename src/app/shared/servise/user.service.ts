@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 import {User} from "../user";
 import {Router} from "@angular/router";
+import {HttpService} from "./http.service";
 
 
 @Injectable()
@@ -17,6 +18,7 @@ export class UserService {
   constructor(
     private http: Http,
     private router: Router,
+    private httpService: HttpService,
   ) {
     this.getAllUsers();
     console.log(this.users);
@@ -89,10 +91,6 @@ export class UserService {
     localStorage.removeItem('currentUser');
     this.isLoggedIn = false;
   }
-
-
-
-
 
   private token() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));

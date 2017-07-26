@@ -6,6 +6,7 @@
 
 import { HttpService } from '../../shared/servise/http.service';
 import { ModalTableComponent } from './modal-table/modal-table.component';
+  import {RightTableComponent} from "./right-table/right-table.component";
 
 @Component({
   selector: 'app-calories',
@@ -28,7 +29,7 @@ export class CaloriesComponent {
   }
 
   update(e) {
-
+    console.log(e);
   }
 
   modal(e) {

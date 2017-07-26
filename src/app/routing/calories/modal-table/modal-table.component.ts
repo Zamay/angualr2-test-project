@@ -15,10 +15,12 @@ import {
 
 import { HttpService } from '../../../shared/servise/http.service';
 import { Food } from '../../../shared/food';
+import {UserService} from "../../../shared/servise/user.service";
+import {User} from "../../../shared/user";
 
-  @Component({
-    selector: 'app-modal-table',
-    templateUrl: './modal-table.component.html',
+@Component({
+  selector: 'app-modal-table',
+  templateUrl: './modal-table.component.html',
   styleUrls: ['./modal-table.component.css']
 })
 export class ModalTableComponent implements OnChanges {
@@ -28,10 +30,15 @@ export class ModalTableComponent implements OnChanges {
   @Input() foodAll: Food;
   @Output() update = new EventEmitter();
 
+  currentUser: User;
   foodForm: FormGroup;
   food: Food;
 
-  constructor(private httpService: HttpService) {
+  constructor(
+    private httpService: HttpService,
+    private userService: UserService
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (this.foodAll === undefined ) {
       this.food = {
@@ -85,12 +92,9 @@ export class ModalTableComponent implements OnChanges {
 
 
 
-
-
-
   updateFood() {
     this.httpService.update(this.foodForm.value, this.foodAll.id)
-      .subscribe((data) => (data));
+      .subscribe((data) => this.update.emit(data));
     alert('Одновление данных завершено')
   }
 

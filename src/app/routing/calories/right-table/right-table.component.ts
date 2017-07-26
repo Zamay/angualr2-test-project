@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 
 import { HttpService } from '../../../shared/servise/http.service';
-import {User} from '../../../shared/user';
+import { UserService } from '../../../shared/servise/user.service';
+import {User} from "../../../shared/user";
 
 @Component({
   selector: 'app-right-table',
