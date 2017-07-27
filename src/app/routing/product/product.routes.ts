@@ -4,6 +4,7 @@ import {RecipesComponent} from "./recipes/recipes.component";
 import {RecipeStartComponent} from "./recipes/recipe-start/recipe-start.component";
 import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
 import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
+import {ProductResolve} from "./recipes/product.resolve";
 
 
 export const ProductRoutes: Routes = [
@@ -12,7 +13,7 @@ export const ProductRoutes: Routes = [
       path: 'recipes', component: RecipesComponent, children: [
       {path: '', component: RecipeStartComponent},
       {path: 'new', component: RecipeEditComponent},
-      {path: ':id', component: RecipeDetailComponent},
+      {path: ':id', component: RecipeDetailComponent, resolve: { product: ProductResolve }},
       {path: ':id/edit', component: RecipeEditComponent},
     ]
     }

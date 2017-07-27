@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { Recipe } from './recipe-class.model';
-import { Ingredient } from './ingredient.model';
+import { Recipe } from './recipe';
+import { Ingredient } from './ingredient';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class RecipeService {
@@ -34,7 +35,14 @@ export class RecipeService {
 
   getRecipe(index: number) {
     return this.recipes[index];
-  }
+    // return Observable.create(observer => {
+    //   setTimeout(() => {
+    //     observer.next(this.recipes[index])
+    //     observer.complete();
+    //   }, 3000);
+    // });
+  };
+
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     // this.slService.addIngredients(ingredients);

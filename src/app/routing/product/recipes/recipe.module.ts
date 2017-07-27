@@ -12,6 +12,7 @@ import {HttpModule} from "@angular/http";
 import {RecipeService} from "./recipe.service";
 import {RouterModule} from "@angular/router";
 import {DropdownDirective} from "./dropdown.directive";
+import {ProductResolve} from "./product.resolve";
 
 @NgModule({
   imports: [
@@ -32,7 +33,7 @@ import {DropdownDirective} from "./dropdown.directive";
     RecipeStartComponent,
     RecipeEditComponent
   ],
-  providers: [RecipeService],
+  providers: [RecipeService, ProductResolve],
   exports: [RecipesComponent]
 })
 export class RecipeModule {
