@@ -31,3 +31,6 @@
     </tr>
   </table>
 </div>
+
+<app-modal-table #detail [foodAll]="food" (save)="update($event)" (delete)="delete($event)"> </app-modal-table>
+

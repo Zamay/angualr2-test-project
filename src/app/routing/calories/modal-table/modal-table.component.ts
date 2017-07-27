@@ -1,7 +1,6 @@
 import {
   Component,
   Input,
-  OnInit,
   ViewChild,
   OnChanges,
   Output,
@@ -14,21 +13,22 @@ import {
 } from '@angular/forms';
 
 import { HttpService } from '../../../shared/servise/http.service';
+import { UserService } from '../../../shared/servise/user.service';
 import { Food } from '../../../shared/food';
-import {UserService} from "../../../shared/servise/user.service";
-import {User} from "../../../shared/user";
+import { User } from '../../../shared/user';
 
 @Component({
-  selector: 'app-modal-table',
+  selector:    'app-modal-table',
   templateUrl: './modal-table.component.html',
-  styleUrls: ['./modal-table.component.css']
+  styleUrls:  ['./modal-table.component.css']
 })
 export class ModalTableComponent implements OnChanges {
   @ViewChild('myModal')
   myModal: any;
 
   @Input() foodAll: Food;
-  @Output() update = new EventEmitter();
+  @Output() save = new EventEmitter();
+  @Output() delete = new EventEmitter();
 
   currentUser: User;
   foodForm: FormGroup;
@@ -39,7 +39,7 @@ export class ModalTableComponent implements OnChanges {
     private userService: UserService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
+    console.log(this.foodAll);
     if (this.foodAll === undefined ) {
       this.food = {
         id: 1,
@@ -94,12 +94,13 @@ export class ModalTableComponent implements OnChanges {
 
   updateFood() {
     this.httpService.update(this.foodForm.value, this.foodAll.id)
-      .subscribe((data) => this.update.emit(data));
+      .subscribe((data) => this.save.emit(data));
     alert('Одновление данных завершено')
   }
 
   deleteFood() {
-    this.httpService.delete(this.foodAll.id).subscribe((data) => data);
+    this.httpService.delete(this.foodAll.id)
+      .subscribe((data) => this.delete.emit(data));
     alert('Удаленно');
     this.myModal.close();
   }

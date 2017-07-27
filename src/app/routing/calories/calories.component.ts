@@ -6,7 +6,7 @@
 
 import { HttpService } from '../../shared/servise/http.service';
 import { ModalTableComponent } from './modal-table/modal-table.component';
-  import {RightTableComponent} from "./right-table/right-table.component";
+  // import {RightTableComponent} from "./right-table/right-table.component";
 
 @Component({
   selector: 'app-calories',
@@ -18,9 +18,6 @@ export class CaloriesComponent {
   foods: any = [];
   food: any = {};
 
-  @ViewChild(ModalTableComponent)
-  private detail: ModalTableComponent;
-
   constructor(private httpService: HttpService) {}
 
   create(e) {
@@ -28,12 +25,8 @@ export class CaloriesComponent {
     this.foods.push(e);
   }
 
-  update(e) {
-    console.log(e);
-  }
-
   modal(e) {
     this.food = e;
-    this.detail.myModal.open()
+    // this.detail.myModal.open()
   }
 }
