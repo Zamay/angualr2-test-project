@@ -1,6 +1,6 @@
 ._form {
-  margin-left: -70px;
-  width: 220%;
+  /*margin-left: -70px;*/
+  /*width: 220%;*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,4 +35,11 @@ form input:focus {
 .input-group-addon{
   border-radius: .25rem ;
   border: 1px solid rgba(0,0,0,.15);
+}
+
+input.ng-touched.ng-invalid {border-bottom:solid red 2px;}
+input.ng-touched.ng-valid {border-bottom:solid green 2px;}
+.alert {
+  position: absolute;
+  margin: -50px;
 }

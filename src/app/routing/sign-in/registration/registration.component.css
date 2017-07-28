@@ -65,3 +65,10 @@ form input:focus {
     transform: scale(0.8);
   }
 }
+
+input.ng-touched.ng-invalid {border-bottom:solid red 2px;}
+input.ng-touched.ng-valid {border-bottom:solid green 2px;}
+.alert {
+  position: absolute;
+  margin: -50px;
+}

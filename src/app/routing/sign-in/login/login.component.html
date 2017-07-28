@@ -1,6 +1,11 @@
+<div class="alert alert-danger"
+     *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+  Некорректный email
+</div>
 <form autocomplete="off" [formGroup]="loginForm" novalidate (ngSubmit)="submit()">
   <input type="email" placeholder="Email" required formControlName="email">
+
   <input type="password" placeholder="Password" required formControlName="password">
   <app-simple-captcha [captcha]="random"  (onChanged)="reCaptcha($event)"></app-simple-captcha>
-  <button class="button" [disabled]="loginForm.invalid || !reCap">Sign Up</button>
+  <button class="button" [disabled]="loginForm.invalid || !reCap">Sign  in</button>
 </form>

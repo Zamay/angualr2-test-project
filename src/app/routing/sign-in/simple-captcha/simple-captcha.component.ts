@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SimpleCaptchaComponent {
 
+  a: boolean = false;
   myForm: FormGroup;
   constructor() {
     this.createForm();

@@ -34,11 +34,11 @@ export class RegistrationComponent implements OnInit {
 
       "name": new FormControl("", [
         Validators.required,
-        // Validators.pattern("^[a-zA-Z]{2,20}")
+        Validators.pattern("^[a-zA-Z]{2,20}")
       ]),
       "email": new FormControl("", [
         Validators.required,
-        // Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
+        Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
       ]),
       "password": new FormControl("", [
         Validators.required

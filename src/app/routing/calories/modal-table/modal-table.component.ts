@@ -16,6 +16,7 @@ import { HttpService } from '../../../shared/servise/http.service';
 import { UserService } from '../../../shared/servise/user.service';
 import { Food } from '../../../shared/food';
 import { User } from '../../../shared/user';
+import {Toast, ToasterConfig, ToasterService} from "angular2-toaster";
 
 @Component({
   selector:    'app-modal-table',
@@ -36,10 +37,9 @@ export class ModalTableComponent implements OnChanges {
 
   constructor(
     private httpService: HttpService,
-    private userService: UserService
+    private toasterService: ToasterService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.foodAll);
     if (this.foodAll === undefined ) {
       this.food = {
         id: 1,
@@ -90,18 +90,33 @@ export class ModalTableComponent implements OnChanges {
     });
   }
 
+  // start toaster
+  config1:  ToasterConfig = new ToasterConfig({
+    positionClass: 'toast-bottom-right'
+  });
 
+  popToast(str) {
+    var toast: Toast = {
+      type: 'info',
+      title: 'Успешно',
+      body: str
+    };
+
+    this.toasterService.pop(toast);
+  }
+  // end toaster
 
   updateFood() {
     this.httpService.update(this.foodForm.value, this.foodAll.id)
       .subscribe((data) => this.save.emit(data));
-    alert('Одновление данных завершено')
+    this.popToast('Одновление данных');
+    this.myModal.close();
   }
 
   deleteFood() {
     this.httpService.delete(this.foodAll.id)
       .subscribe((data) => this.delete.emit(data));
-    alert('Удаленно');
+    this.popToast('Удаление данных');
     this.myModal.close();
   }
 }
