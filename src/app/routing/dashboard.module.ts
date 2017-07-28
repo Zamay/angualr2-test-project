@@ -21,7 +21,7 @@ import {ProductModule} from "./product/product.module";
     SignModule,
     HomeModule,
     RouterModule.forChild([
-      // { path: '**', redirectTo: '/home' }
+      { path: '**', redirectTo: '/home' }
     ])
   ],
   declarations: [

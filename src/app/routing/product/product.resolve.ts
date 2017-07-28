@@ -1,6 +1,3 @@
-/**
- * Created by Mitya on 27.07.2017.
- */
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { ProductService } from './product.service';

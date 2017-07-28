@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import * as Rx from 'rxjs';
+import * as Rx from 'rxjs/Observable';
 
 const contacts = [
   { id: 1, name: 'Pascal Precht', twitter: '@PascalPrecht' },
@@ -21,7 +21,7 @@ export class ProductService {
   getContact(id) {
     return Observable.create(observer => {
       setTimeout(() => {
-        observer.next(contacts.find((contact) => contact.id == id))
+        observer.next(contacts.find((contact) => contact.id == id));
         observer.complete();
       }, 3000);
     });
