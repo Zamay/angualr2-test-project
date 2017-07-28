@@ -10,11 +10,13 @@ import { SignModule } from "./sign-in/sign.module";
 import { HomeModule } from "./home/home.module";
 import { UserService } from "../shared/servise/user.service";
 import {AuthGuardService} from "../shared/servise/auth-guard.service";
+import {ProductModule} from "./product/product.module";
 
 @NgModule({
   imports: [
     CommonModule,
     CaloriesModule,
+    ProductModule,
     UserModule,
     SignModule,
     HomeModule,

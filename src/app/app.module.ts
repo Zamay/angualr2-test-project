@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardModule } from './routing/dashboard.module';
-
 import { HttpService, AuthenticationService, SimpleCaptchaService } from './shared/servise/index';
 
 @NgModule({
