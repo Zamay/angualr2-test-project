@@ -4,13 +4,14 @@ import {HomeComponent} from "./home.component";
 import {RouterModule} from "@angular/router";
 import {ModalModule} from "ngx-modal";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import { LoadersCssModule } from 'angular2-loaders-css';
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     ModalModule,
+    LoadersCssModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent }
     ])
