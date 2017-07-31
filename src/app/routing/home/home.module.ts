@@ -11,7 +11,6 @@ import { LoadersCssModule } from 'angular2-loaders-css';
     ReactiveFormsModule,
     FormsModule,
     ModalModule,
-    LoadersCssModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent }
     ])

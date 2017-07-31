@@ -12,3 +12,24 @@
 li{
   list-style-type: none
 }
+.my-loader{
+  background: #e21313;
+}
+.blac {
+  background-color: #000; /* Чёрный фон */
+  height: 100%; /* Высота максимальна */
+  left: 0; /* Нулевой отступ слева */
+  opacity: 0.50; /* Степень прозрачности */
+  position: fixed; /* Фиксированное положение */
+  top: 0; /* Нулевой отступ сверху */
+  width: 100%; /* Ширина максимальна */
+  z-index: 100; /* Заведомо быть НАД другими элементами */
+}
+.center{
+  width: 50%;
+  margin: 20% auto;
+  text-align: center;
+}
+.ball-pulse-sync>div, .ball-pulse>div, .ball-scale>div {
+  background-color: #e21313;
+}

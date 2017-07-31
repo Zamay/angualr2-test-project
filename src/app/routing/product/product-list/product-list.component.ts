@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ProductListComponent implements OnInit {
 
+  loader: boolean = false;
   products: any[];
 
   constructor(

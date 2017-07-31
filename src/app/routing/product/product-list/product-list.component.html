@@ -9,7 +9,7 @@
   <div class="col-xs-12">
     <ul>
       <li *ngFor="let product of products">
-        <a [routerLink]="[product.id]" class="list-group-item clearfix _list">
+        <a [routerLink]="[product.id]" class="list-group-item clearfix _list" >
           <div class="pull-left">
             <h4 class="list-group-item-heading">{{ product.name }}</h4>
           </div>
@@ -22,4 +22,8 @@
   </div>
 </div>
 
-<!--</div>-->
+<div class="blac" *ngIf="loader">
+  <div class="center">
+    <loaders-css [loader]="'ball-pulse-sync'" [loaderClass]="'my-loader'"></loaders-css>
+  </div>
+</div>
