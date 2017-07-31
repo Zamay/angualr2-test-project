@@ -17,17 +17,17 @@
     </div>
   </div>
 
-  <!--<div class="row">-->
-    <!--<div class="col-xs-12">-->
-      <!--<ul class="list-group">-->
-        <!--<li-->
-          <!--class="list-group-item"-->
-          <!--*ngFor="let ingredient of product.ingredients">-->
-          <!--{{ ingredient.name }} - {{ ingredient.amount }}-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let composition of product.compos">
+          {{ composition.name }} - {{ composition.amount }}
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <p><a routerLink="/product">Back to list</a></p>
 
