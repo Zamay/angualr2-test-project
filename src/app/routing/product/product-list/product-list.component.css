@@ -4,3 +4,11 @@
   float: left;
   display: flex;
 }
+._list{
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+li{
+  list-style-type: none
+}

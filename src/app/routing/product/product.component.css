@@ -1,6 +1,10 @@
 ._product{
+  width: 80%;
   margin-left: 250px;
   padding: 20px;
   float: left;
   display: flex;
+}
+.row {
+  width: 100%;
 }

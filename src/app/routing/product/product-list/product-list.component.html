@@ -1,9 +1,25 @@
-<!--<div class="_product">-->
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewProduct()">New Product</button>
+    <a [routerLink]="['new']">dsad</a>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <ul>
+      <li *ngFor="let product of products">
+        <a [routerLink]="[product.id]" class="list-group-item clearfix _list">
+          <div class="pull-left">
+            <h4 class="list-group-item-heading">{{ product.name }}</h4>
+          </div>
+          <span class="pull-right">
+            <img [src]="product.imagePath" alt="{{ product.name }}" class="img-responsive" style="max-height: 50px;">
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-
-  <ul>
-    <li *ngFor="let product of products">
-      <a [routerLink]="['product', product.id]">{{product.name}}</a>
-    </li>
-  </ul>
 <!--</div>-->
