@@ -65,4 +65,9 @@ export class ProductService {
     console.log(obj);
     products.push(obj);
   }
+
+  deleteProduct(id: any) {
+    console.log(id);
+    products.splice(id, 1);
+  }
 }

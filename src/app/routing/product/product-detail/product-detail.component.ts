@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ProductService} from "../product.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -8,9 +9,14 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductDetailComponent implements OnInit {
 
-  product;
+  product: any;
+  id: number;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private router: Router
+  ) {
 
   }
 
@@ -21,5 +27,12 @@ export class ProductDetailComponent implements OnInit {
       this.product = this.route.snapshot.data['product'];
     });
 
+    this.id = this.product.id;
+  }
+
+  onDelete() {
+    console.log(this.id);
+    this.productService.deleteProduct(this.id);
+    this.router.navigate(['/product']);
   }
 }
