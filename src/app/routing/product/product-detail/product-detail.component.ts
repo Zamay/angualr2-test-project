@@ -13,6 +13,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
+    console.log('1');
     this.product = this.route.snapshot.data['product'];
     console.log(this.product);
   }
