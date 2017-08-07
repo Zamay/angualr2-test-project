@@ -13,6 +13,7 @@ export const ProductRoutes: Routes = [
     children: [
       // { path: '', component: ProductListComponent },
       { path: 'new', component: ProductEditComponent },
+      { path: ':id/edit', component: ProductEditComponent },
       { path: ':id', component: ProductDetailComponent, resolve: { product: ProductResolve } },
     ]
 

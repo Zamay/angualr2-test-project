@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import * as Rx from 'rxjs/Observable';
 import {Composition} from "./composition";
 
-const products = [
-  { id: 1, name: 'яблоко', description: 'Что то про яблоко', imagePath: 'https://goo.gl/9qptYP',
+let products = [
+  {
+    id: 1, name: 'яблоко', description: 'Что то про яблоко', imagePath: 'https://goo.gl/9qptYP',
     compos: [
       new Composition('Билки', 10),
       new Composition('Жиры', 10),
       new Composition('Углеводы', 10),
       new Composition('Калории', 10)
-      ]
+    ]
   },
 
-  { id: 2, name: 'банан', description: 'Что то про банан', imagePath: 'https://goo.gl/R7CQKF',
+  {
+    id: 2, name: 'банан', description: 'Что то про банан', imagePath: 'https://goo.gl/R7CQKF',
     compos: [
       new Composition('Билки', 20),
       new Composition('Жиры', 20),
@@ -21,7 +23,8 @@ const products = [
       new Composition('Калории', 20)
     ]
   },
-  { id: 3, name: 'персик', description: 'Что то про персик', imagePath: 'https://goo.gl/ji3eMD',
+  {
+    id: 3, name: 'персик', description: 'Что то про персик', imagePath: 'https://goo.gl/ji3eMD',
     compos: [
       new Composition('Билки', 30),
       new Composition('Жиры', 30),
@@ -29,7 +32,8 @@ const products = [
       new Composition('Калории', 30)
     ]
   },
-  { id: 4, name: 'клубника', description: 'Что то про клубнику', imagePath: 'https://goo.gl/XFzNuG',
+  {
+    id: 4, name: 'клубника', description: 'Что то про клубнику', imagePath: 'https://goo.gl/XFzNuG',
     compos: [
       new Composition('Билки', 40),
       new Composition('Жиры', 40),
@@ -66,8 +70,13 @@ export class ProductService {
     products.push(obj);
   }
 
-  deleteProduct(id: any) {
-    console.log(id);
-    products.splice(id, 1);
+  updateProduct(id: number, newProduct: any) {
+    products.find( el => el.id == id ? products =  newProduct : false );
   }
+
+  deleteProduct(id: any): any {
+    products = products.filter((product) => product.id == id ? false : true);
+  }
+
+
 }

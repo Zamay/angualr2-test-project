@@ -30,9 +30,12 @@ export class ProductDetailComponent implements OnInit {
     this.id = this.product.id;
   }
 
+  onEdit() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
   onDelete() {
-    console.log(this.id);
-    this.productService.deleteProduct(this.id);
+    this.productService.deleteProduct(this.id)
     this.router.navigate(['/product']);
   }
 }

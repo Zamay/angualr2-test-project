@@ -20,8 +20,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productsService.getProductAll().subscribe(data => this.products = (data));
-    console.log(this.products);
+    setInterval(() => {this.productsService.getProductAll().subscribe(data => this.products = (data)) } , 5000)
   }
 
   onNewProduct() {

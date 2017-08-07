@@ -12,16 +12,23 @@ export class ProductEditComponent implements OnInit {
 
   id: number;
   editMode = false;
+  product: any;
   productForm: FormGroup;
 
-  constructor(
-    private productService: ProductService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
+  constructor(private productService: ProductService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
-    this.initForm()
+    this.route.params
+      .subscribe(
+        (product) => {
+          this.id = +product['id'];
+          this.editMode = product['id'] != null;
+          this.initForm();
+        }
+      );
   }
 
   private initForm() {
@@ -30,37 +37,48 @@ export class ProductEditComponent implements OnInit {
     let productDescription = '';
     let productIngredients = new FormArray([]);
 
-    // if (this.editMode) {
-    //   const recipe = this.productService.getProduct(this.id);
-    //   productName = recipe.name;
-    //   productImagePath = recipe.imagePath;
-    //   productDescription = recipe.description;
-    //   if (recipe['ingredients']) {
-    //     for (let ingredient of recipe.ingredients) {
-    //       productIngredients.push(
-    //         new FormGroup({
-    //           'name': new FormControl(ingredient.name, Validators.required),
-    //           'amount': new FormControl(ingredient.amount, [
-    //             Validators.required,
-    //             Validators.pattern(/^[1-9]+[0-9]*$/)
-    //           ])
-    //         })
-    //       );
-    //     }
-    //   }
-    // }
+    if (this.editMode) {
+      console.log('1');
+      this.productService.getProduct(this.id).subscribe(obj => {
+        this.product = obj;
+        productName = this.product.name;
+        productImagePath = this.product.imagePath;
+        productDescription = this.product.description;
 
-    this.productForm = new FormGroup({
-      'name': new FormControl(productName, Validators.required),
-      'imagePath': new FormControl(productImagePath, Validators.required),
-      'description': new FormControl(productDescription, Validators.required),
-      'composition': productIngredients
-    });
+        console.log(this.product.compos);
+        for (let ingredient of this.product.compos) {
+          console.log(ingredient);
+          productIngredients.push(
+            new FormGroup({
+              'name': new FormControl(ingredient.name, Validators.required),
+              'amount': new FormControl(ingredient.amount, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/)
+              ])
+            })
+          );
+          console.log(productIngredients);
+        }
+
+
+        this
+          .productForm = new FormGroup({
+          'name': new FormControl(productName, Validators.required),
+          'imagePath': new FormControl(productImagePath, Validators.required),
+          'description': new FormControl(productDescription, Validators.required),
+          'composition': productIngredients
+        });
+      });
+    }
+
   }
 
   onSubmit() {
-    console.log(this.productForm);
-    this.productService.addProduct(this.productForm.value);
+    if (this.editMode) {
+      this.productService.updateProduct(this.id, this.productForm.value);
+    } else {
+      this.productService.addProduct(this.productForm.value);
+    }
   }
 
   onCancel() {
