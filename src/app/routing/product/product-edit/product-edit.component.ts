@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../product.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-edit',
@@ -13,7 +14,11 @@ export class ProductEditComponent implements OnInit {
   editMode = false;
   productForm: FormGroup;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.initForm()
@@ -52,4 +57,14 @@ export class ProductEditComponent implements OnInit {
       'composition': productIngredients
     });
   }
+
+  onSubmit() {
+    console.log(this.productForm);
+    this.productService.addProduct(this.productForm.value);
+  }
+
+  onCancel() {
+    this.router.navigate(['/product'], {relativeTo: this.route});
+  }
+
 }

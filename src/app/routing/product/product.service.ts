@@ -42,6 +42,8 @@ const products = [
 @Injectable()
 export class ProductService {
 
+  id: number = 4;
+
   getProductAll() {
     return Observable.create(observer => {
       observer.next(products);
@@ -55,5 +57,12 @@ export class ProductService {
         observer.complete();
       }, 3000);
     });
+  }
+
+  addProduct(product: any) {
+    let obj = product;
+    obj.id = ++this.id;
+    console.log(obj);
+    products.push(obj);
   }
 }
