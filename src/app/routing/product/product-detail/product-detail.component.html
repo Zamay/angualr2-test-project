@@ -1,41 +1,46 @@
 <!--<div class="_product">-->
 
-  <div class="row">
-    <div class="col-xs-12">
-      <img [src]="product.imagePath" alt="{{ product.name }}" class="img-responsive" style="max-height: 300px;">
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <img [src]="product.imageUrl" alt="{{ product.name }}" class="img-responsive" style="max-height: 300px;">
   </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>{{ product.name }}</h1>
-    </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Имя: {{ product.name }}</h1>
   </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      {{ product.description }}
-    </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Описание</h3>
+    {{ product.description }}
   </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          *ngFor="let composition of product.compos">
-          {{ composition.name }} - {{ composition.amount }}
-        </li>
-      </ul>
-    </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Состав</h3>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let composition of product.composition">
+        <div class="compos">
+          <span class="_left">{{ composition.name }}</span>
+          <span class="_right">{{ composition.amount }}</span>
+        </div>
+      </li>
+    </ul>
   </div>
+</div>
+<br>
+<div class="row">
+  <button class="btn btn-default" (click)="onEdit()">Edit</button>
+  <button class="btn btn-default" (click)="onDelete()">Delete</button>
+</div>
 
-  <div class="row">
-    <button class="btn btn-default" (click)="onEdit()">Edit</button>
-    <button class="btn btn-default" (click)="onDelete()">Delete</button>
-  </div>
-
-
-  <p><a routerLink="/product">Back to list</a></p>
+<br>
+<p><a routerLink="/product">Back to list</a></p>
 
 
 <!--</div>-->

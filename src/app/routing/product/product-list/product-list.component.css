@@ -6,7 +6,7 @@
 }
 ._list{
   width: 300px;
-  display: flex;
+  display: block;
   justify-content: space-between;
 }
 li{
@@ -32,4 +32,12 @@ li{
 }
 .ball-pulse-sync>div, .ball-pulse>div, .ball-scale>div {
   background-color: #e21313;
+}
+
+.pull-left{
+  float: left;
+  padding-top: 10px;
+}
+.pull-right{
+  float: right;
 }

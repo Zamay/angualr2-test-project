@@ -77,6 +77,4 @@ export class ProductService {
   deleteProduct(id: any): any {
     products = products.filter((product) => product.id == id ? false : true);
   }
-
-
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../product.service";
+import {MockProductService} from "../mock-product.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -14,6 +15,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private mockProductService: MockProductService,
     private productService: ProductService,
     private router: Router
   ) {
@@ -21,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.product = this.route.snapshot.data['product'];
 
     this.route.params.subscribe((params) => {
@@ -35,7 +38,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onDelete() {
-    this.productService.deleteProduct(this.id)
+    this.mockProductService.deleteProduct(this.id)
+      .subscribe(res => console.log(res));
     this.router.navigate(['/product']);
   }
 }

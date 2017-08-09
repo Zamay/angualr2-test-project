@@ -8,9 +8,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ProductService} from './product.service';
 import {ProductResolve} from './product.resolve';
 import {ProductComponent} from './product.component';
-import {ProductStartComponent} from "app/routing/product/product-start/product-start.component";
-import { ProductEditComponent } from './product-edit/product-edit.component';
-import {ProductEditModule} from "./product-edit/product-edit.module";
+import {ProductStartComponent} from 'app/routing/product/product-start/product-start.component';
+import {ProductEditModule} from './product-edit/product-edit.module';
+import {MockProductService} from './mock-product.service';
 
 @NgModule({
   imports: [
@@ -24,7 +24,8 @@ import {ProductEditModule} from "./product-edit/product-edit.module";
   declarations: [ProductComponent, ProductStartComponent],
   providers: [
     ProductService,
-    ProductResolve
+    ProductResolve,
+    MockProductService
   ],
   exports: [ProductComponent]
 })

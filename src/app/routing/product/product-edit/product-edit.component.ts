@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../product.service';
 import {ActivatedRoute, Router} from "@angular/router";
+import {MockProductService} from "../mock-product.service";
 
 @Component({
   selector: 'app-product-edit',
@@ -15,15 +16,15 @@ export class ProductEditComponent implements OnInit {
   product: any;
   productForm: FormGroup;
 
-  constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private router: Router) {
+  constructor(
+    private mockProductService: MockProductService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (product) => {
+    this.route.params.subscribe((product) => {
           this.id = +product['id'];
           this.editMode = product['id'] != null;
           this.initForm();
@@ -33,41 +34,47 @@ export class ProductEditComponent implements OnInit {
 
   private initForm() {
     let productName = '';
-    let productImagePath = '';
+    let productImageUrl = '';
     let productDescription = '';
-    let productIngredients = new FormArray([]);
+    // let productComposition = new FormArray([]);
 
     if (this.editMode) {
-      console.log('1');
-      this.productService.getProduct(this.id).subscribe(obj => {
-        this.product = obj;
+      this.mockProductService.getProductById(this.id).subscribe(res => {
+        this.product = res;
         productName = this.product.name;
-        productImagePath = this.product.imagePath;
+        productImageUrl = this.product.imageUrl;
         productDescription = this.product.description;
 
-        console.log(this.product.compos);
-        for (let ingredient of this.product.compos) {
-          console.log(ingredient);
-          productIngredients.push(
-            new FormGroup({
-              'name': new FormControl(ingredient.name, Validators.required),
-              'amount': new FormControl(ingredient.amount, [
-                Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/)
-              ])
-            })
-          );
-          console.log(productIngredients);
-        }
-
+        console.log(this.product);
+        // for (let ingredient of this.product.compos) {
+        //   console.log(ingredient);
+        //   productComposition.push(
+        //     new FormGroup({
+        //       'name': new FormControl(ingredient.name, Validators.required),
+        //       'amount': new FormControl(ingredient.amount, [
+        //         Validators.required,
+        //         Validators.pattern(/^[1-9]+[0-9]*$/)
+        //       ])
+        //     })
+        //   );
+        //   console.log(productComposition);
+        // }
 
         this
           .productForm = new FormGroup({
           'name': new FormControl(productName, Validators.required),
-          'imagePath': new FormControl(productImagePath, Validators.required),
-          'description': new FormControl(productDescription, Validators.required),
-          'composition': productIngredients
+          'imageUrl': new FormControl(productImageUrl, Validators.required),
+          'description': new FormControl(productDescription, Validators.required)
+          // 'composition': productComposition
         });
+      });
+    } else {
+      this
+        .productForm = new FormGroup({
+        'name': new FormControl(productName, Validators.required),
+        'imageUrl': new FormControl(productImageUrl, Validators.required),
+        'description': new FormControl(productDescription, Validators.required)
+        // 'composition': productComposition
       });
     }
 
@@ -75,14 +82,15 @@ export class ProductEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      this.productService.updateProduct(this.id, this.productForm.value);
+      this.mockProductService.updateProduct(this.id, this.productForm.value);
     } else {
-      this.productService.addProduct(this.productForm.value);
+      this.mockProductService.createProduct(this.productForm.value)
+        .subscribe((data) => console.log(data), (error) => error);
     }
   }
 
   onCancel() {
-    this.router.navigate(['/product'], {relativeTo: this.route});
+    // this.router.navigate(['/product'], {relativeTo: this.route});
   }
 
 }
