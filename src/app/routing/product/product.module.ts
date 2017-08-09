@@ -11,6 +11,7 @@ import {ProductComponent} from './product.component';
 import {ProductStartComponent} from 'app/routing/product/product-start/product-start.component';
 import {ProductEditModule} from './product-edit/product-edit.module';
 import {MockProductService} from './mock-product.service';
+import {ShareableStreamStoreService} from "./shareable-stream-store.service";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {MockProductService} from './mock-product.service';
   providers: [
     ProductService,
     ProductResolve,
-    MockProductService
+    MockProductService,
+    ShareableStreamStoreService
   ],
   exports: [ProductComponent]
 })

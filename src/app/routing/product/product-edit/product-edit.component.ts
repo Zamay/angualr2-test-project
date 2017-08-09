@@ -3,6 +3,7 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../product.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MockProductService} from "../mock-product.service";
+import {ShareableStreamStoreService} from "../shareable-stream-store.service";
 
 @Component({
   selector: 'app-product-edit',
@@ -19,7 +20,8 @@ export class ProductEditComponent implements OnInit {
   constructor(
     private mockProductService: MockProductService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private shareableStreamStoreService: ShareableStreamStoreService
   ) {
   }
 
@@ -87,6 +89,8 @@ export class ProductEditComponent implements OnInit {
       this.mockProductService.createProduct(this.productForm.value)
         .subscribe((data) => console.log(data), (error) => error);
     }
+
+    // this.shareableStreamStoreService.addProduct(this.productForm.value)
   }
 
   onCancel() {

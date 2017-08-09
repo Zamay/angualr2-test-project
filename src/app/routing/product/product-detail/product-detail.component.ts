@@ -16,7 +16,6 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private mockProductService: MockProductService,
-    private productService: ProductService,
     private router: Router
   ) {
 
@@ -40,6 +39,8 @@ export class ProductDetailComponent implements OnInit {
   onDelete() {
     this.mockProductService.deleteProduct(this.id)
       .subscribe(res => console.log(res));
+
     this.router.navigate(['/product']);
   }
+
 }
