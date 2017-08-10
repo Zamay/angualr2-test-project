@@ -7,8 +7,29 @@
       <li><a [routerLink]="['/product']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Product</a></li>
       <li><a [routerLink]="['/sign']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Login/Sign Out</a></li>
     </ul>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <form [formGroup]="cityForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="city" placeholder="City">
+      </div>
+      <div *ngIf="errors" style="text-align: center">
+        <p>Нет такого города или страны</p>
+      </div>
+    </form>
+
+    <br>
+    <div *ngIf="weather" class="weather">
+      <p>Weather in {{weather.name}}, {{weather.sys.country}}</p>
+      <p>Temp {{weather.main.temp}} ℃</p>
+      <p></p>
+    </div>
   </div>
   <div class="main-content">
     <div class="swipe-area"></div>
   </div>
+
 </div>

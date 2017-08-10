@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../product.service";
 import {MockProductService} from "../mock-product.service";
+import {ShareableStreamStoreService} from "../shareable-stream-store.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -16,7 +17,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private mockProductService: MockProductService,
-    private router: Router
+    private router: Router,
+    private shareableStreamStoreService: ShareableStreamStoreService
   ) {
 
   }
@@ -30,6 +32,8 @@ export class ProductDetailComponent implements OnInit {
     });
 
     this.id = this.product.id;
+
+    this.shareableStreamStoreService.emit('test' , 'abs')
   }
 
   onEdit() {

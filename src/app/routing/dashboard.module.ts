@@ -11,10 +11,13 @@ import { HomeModule } from "./home/home.module";
 import { UserService } from "../shared/servise/user.service";
 import {AuthGuardService} from "../shared/servise/auth-guard.service";
 import {ProductModule} from "./product/product.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     CaloriesModule,
     ProductModule,
     UserModule,
