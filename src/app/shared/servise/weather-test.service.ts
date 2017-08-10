@@ -3,7 +3,6 @@ import {Http} from "@angular/http";
 
 @Injectable()
 export class WeatherTestService {
-  // public location: any;
   public link: string = 'http://api.openweathermap.org/data/2.5/weather?q=';
   public appid = '&units=metric&APPID=f8998a426752a5bdc36fb0a159e9f17b';
   public weather: any;
@@ -14,11 +13,14 @@ export class WeatherTestService {
 
   public get(): any {
     // получить местонахождение
-    return this.http.get("https://ipinfo.io").map(location => location.json()).subscribe((data) => {
-      let location = data;
+    return this.http.get("https://ipinfo.io").map(location => location.json()).subscribe((loc) => {
       // Получить погоду
-      this.http.get(this.link + location.city + ',' + location.country + this.appid)
-        .subscribe(res => {res.json(); console.log(res.json()); this.weather = res.json()})
+      this.http.get(this.link + loc.city + ',' + loc.country + this.appid)
+        .map(res => res.json())
+        .subscribe(
+          data => { console.log(data); this.weather = data;  return data;},
+          err => { console.log('Something went wrong!'); }
+        )
     })
   }
   // Получить погоду по указанному городу
@@ -28,6 +30,6 @@ export class WeatherTestService {
   }
 
   test() {
-    this.weather;
+    return this.weather;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { WeatherTestService } from '../servise/weather-test.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   public weather: any;
   cityForm: FormGroup;
   errors: any;
@@ -16,9 +16,6 @@ export class NavbarComponent {
     this.cityForm = new FormGroup({
       'city': new FormControl('')
     });
-
-    console.log(this.weatherServ.test());
-
   }
 
   onSubmit() {
@@ -26,7 +23,10 @@ export class NavbarComponent {
       data => {this.errors = false; this.weather = data; console.log(data)},
       error => {this.errors = true; console.log(error)}
       );
-    this.cityForm.reset()
+  }
+
+  ngOnInit() {
+    setTimeout(() => this.weather = this.weatherServ.test(), 3000)
   }
 
 }
