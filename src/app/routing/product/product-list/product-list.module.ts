@@ -7,8 +7,7 @@ import {LoadersCssModule} from "angular2-loaders-css";
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
-    LoadersCssModule,
+    RouterModule
   ],
   declarations: [ProductListComponent],
   exports: [ProductListComponent]

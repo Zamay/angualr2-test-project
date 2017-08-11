@@ -24,10 +24,19 @@
     <br>
     <div *ngIf="weather" class="weather">
       <p>Weather in {{weather.name}}, {{weather.sys.country}}</p>
-      <p>Temp {{weather.main.temp}} ℃</p>
+      <p>Temp {{temp}} ℃</p>
       <p></p>
     </div>
+
+    <div class="blac" *ngIf="loader">
+      <loaders-css [loader]="'ball-pulse-rise'" [loaderClass]="'my-loader'">
+
+      </loaders-css>
+    </div>
+
   </div>
+
+
   <div class="main-content">
     <div class="swipe-area"></div>
   </div>

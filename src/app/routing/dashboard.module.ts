@@ -12,12 +12,14 @@ import { UserService } from "../shared/servise/user.service";
 import {AuthGuardService} from "../shared/servise/auth-guard.service";
 import {ProductModule} from "./product/product.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {LoadersCssModule} from "angular2-loaders-css";
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    LoadersCssModule,
     CaloriesModule,
     ProductModule,
     UserModule,

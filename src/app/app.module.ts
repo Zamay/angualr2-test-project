@@ -6,7 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardModule } from './routing/dashboard.module';
 import { HttpService, AuthenticationService, SimpleCaptchaService } from './shared/servise/index';
-import {WeatherTestService} from "./shared/servise/weather-test.service";
+import { WeatherTestService } from './shared/servise/weather-test.service';
+import { LocationTestService } from './shared/servise/location-test.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {WeatherTestService} from "./shared/servise/weather-test.service";
     SimpleCaptchaService,
     HttpService,
     AuthenticationService,
-    WeatherTestService
+    WeatherTestService,
+    LocationTestService
   ],
   bootstrap: [AppComponent]
 })
